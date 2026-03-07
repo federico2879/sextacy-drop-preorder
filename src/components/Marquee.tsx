@@ -1,25 +1,23 @@
-import { useRef } from "react";
+import model1 from "@/assets/model-1.jpg";
+import model2 from "@/assets/model-2.jpg";
+import model3 from "@/assets/model-3.jpg";
+import model4 from "@/assets/model-4.jpg";
+import model5 from "@/assets/model-5.jpg";
+import model6 from "@/assets/model-6.jpg";
 
-import img1 from "@/assets/righe_rosse.jpeg";
-import img2 from "@/assets/rtm_macchina.jpeg";
-import img3 from "@/assets/saponata.jpeg";
-import img4 from "@/assets/tshirt-1.jpg";
-import img5 from "@/assets/tshirt-2.jpg";
-import img6 from "@/assets/tshirt-3.jpg";
-
-const defaultImages = [img1, img2, img3, img4, img5, img6];
+const defaultImages = [model1, model2, model3, model4, model5, model6];
 
 interface MarqueeProps {
   images?: string[];
-  speed?: number; // seconds for one full loop
+  speed?: number;
   height?: string;
 }
 
-const Marquee = ({ images = defaultImages, speed = 30, height = "h-48 sm:h-64 md:h-80" }: MarqueeProps) => {
+const Marquee = ({ images = defaultImages, speed = 25, height = "h-56 sm:h-72 md:h-96" }: MarqueeProps) => {
   const items = [...images, ...images];
 
   return (
-    <section className="w-full overflow-hidden py-8">
+    <div className="w-full overflow-hidden">
       <div
         className="flex w-max animate-marquee"
         style={{ animationDuration: `${speed}s` }}
@@ -29,13 +27,13 @@ const Marquee = ({ images = defaultImages, speed = 30, height = "h-48 sm:h-64 md
             key={i}
             src={src}
             alt=""
-            className={`${height} w-auto object-cover mx-2 flex-shrink-0`}
+            className={`${height} w-auto object-cover flex-shrink-0`}
             loading="lazy"
             draggable={false}
           />
         ))}
       </div>
-    </section>
+    </div>
   );
 };
 
