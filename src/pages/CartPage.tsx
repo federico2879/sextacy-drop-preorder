@@ -21,10 +21,16 @@ const CartPage = () => {
     const GOOGLE_FORM_URL =
       "https://docs.google.com/forms/d/e/1FAIpQLScFdLDMTHsnywVenibUMfy6FCoc5qBz0aKmEQoLIMwn46Y65w/formResponse";
 
+    const urlEncoded = new URLSearchParams();
+    data.forEach((value, key) => urlEncoded.append(key, value as string));
+
     fetch(GOOGLE_FORM_URL, {
       method: "POST",
-      body: data,
+      body: urlEncoded,
       mode: "no-cors",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
     });
 
     setSubmitted(true);
