@@ -7,20 +7,26 @@ const Hero = () => {
   };
 
   return (
-    <section className="flex min-h-screen flex-col items-center justify-center text-center">
-      <p className="mb-6 text-xs tracking-[0.4em] uppercase text-muted-foreground">
-        Drop 01
-      </p>
-      <img
-        src={logo}
-        alt="Sextacy"
-        className="h-12 sm:h-16 md:h-20 mb-8 w-auto"
-      />
-      <p className="text-sm md:text-base tracking-[0.2em] uppercase text-muted-foreground mb-10 max-w-md">
-        Respect the music
-      </p>
-      <Marquee />
-      <div className="mt-10">
+    <section className="relative flex min-h-screen flex-col items-center justify-center text-center overflow-hidden">
+      {/* Marquee as background */}
+      <div className="absolute inset-0 flex items-center">
+        <Marquee height="h-full" speed={30} />
+      </div>
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-background/60" />
+      {/* Content on top */}
+      <div className="relative z-10 flex flex-col items-center">
+        <p className="mb-4 text-xs tracking-[0.4em] uppercase text-muted-foreground">
+          Drop 01
+        </p>
+        <img
+          src={logo}
+          alt="Sextacy"
+          className="h-8 sm:h-10 md:h-14 mb-6 w-auto"
+        />
+        <p className="text-sm md:text-base tracking-[0.2em] uppercase text-muted-foreground mb-10 max-w-md">
+          Respect the music
+        </p>
         <button
           onClick={scrollToCollection}
           className="border border-foreground px-10 py-4 text-xs tracking-[0.3em] uppercase text-foreground transition-colors duration-300 hover:bg-foreground hover:text-background"
