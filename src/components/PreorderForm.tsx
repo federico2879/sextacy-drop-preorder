@@ -12,7 +12,7 @@ const PreorderForm = () => {
     const data = new FormData(form);
 
     // Submit to Google Form — replace the action URL and entry IDs with your own
-    const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse";
+    const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScFdLDMTHsnywVenibUMfy6FCoc5qBz0aKmEQoLIMwn46Y65w/formResponse";
 
     fetch(GOOGLE_FORM_URL, {
       method: "POST",
@@ -43,15 +43,22 @@ const PreorderForm = () => {
       </p>
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <input
-          name="entry.XXXXXXX1"
+          name="entry.1727151423"
           type="text"
-          placeholder="Name"
+          placeholder="Name and Surname"
           required
-          maxLength={100}
+          maxLength={20}
           className="bg-transparent border-b border-border px-0 py-4 text-sm tracking-wide text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors"
         />
         <input
-          name="entry.XXXXXXX2"
+          name="entry.901405781"
+          type="text"
+          placeholder="Instagram"
+          maxLength={20}
+          className="bg-transparent border-b border-border px-0 py-4 text-sm tracking-wide text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors"
+        />
+        <input
+          name="entry.774244041"
           type="email"
           placeholder="Email"
           required
@@ -59,11 +66,11 @@ const PreorderForm = () => {
           className="bg-transparent border-b border-border px-0 py-4 text-sm tracking-wide text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors"
         />
         <input
-          name="entry.XXXXXXX3"
+          name="entry.1325497763"
           type="tel"
-          placeholder="Phone / WhatsApp"
+          placeholder="Phone number"
           required
-          maxLength={20}
+          maxLength={10}
           className="bg-transparent border-b border-border px-0 py-4 text-sm tracking-wide text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors"
         />
 
@@ -76,7 +83,7 @@ const PreorderForm = () => {
               <label key={size} className="cursor-pointer">
                 <input
                   type="radio"
-                  name="entry.XXXXXXX4"
+                  name="entry.2129795582"
                   value={size}
                   required
                   className="sr-only peer"

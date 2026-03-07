@@ -1,6 +1,6 @@
-import tshirt1 from "@/assets/tshirt-1.jpg";
-import tshirt2 from "@/assets/tshirt-2.jpg";
-import tshirt3 from "@/assets/tshirt-3.jpg";
+import tshirt1 from "@/assets/righe_rosse.jpeg";
+import tshirt2 from "@/assets/rtm_macchina.jpeg";
+import tshirt3 from "@/assets/saponata.jpeg";
 
 export interface Product {
   id: string;
@@ -35,6 +35,14 @@ export const products: Product[] = [
     price: "€60",
     images: [tshirt3, tshirt3, tshirt3, tshirt3],
   },
+  {
+    id: "presence-tee-washed",
+    name: "Presence Tee — Washed",
+    description:
+      "Vintage wash treatment on heavyweight cotton. Relaxed fit with raw hem detail. Each piece is unique. Cut and sewn in Italy.",
+    price: "€60",
+    images: [tshirt3, tshirt3, tshirt3, tshirt3],
+  }
 ];
 
 export const getProduct = (id: string) => products.find((p) => p.id === id);
