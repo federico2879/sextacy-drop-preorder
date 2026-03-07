@@ -13,13 +13,13 @@ interface MarqueeProps {
   height?: string;
 }
 
-const Marquee = ({ images = defaultImages, speed = 25, height = "h-56 sm:h-72 md:h-96" }: MarqueeProps) => {
+const Marquee = ({ images = defaultImages, speed = 40, height = "h-56 sm:h-72 md:h-96" }: MarqueeProps) => {
   const items = [...images, ...images];
 
   return (
     <div className="w-full overflow-hidden">
       <div
-        className="flex w-max animate-marquee"
+        className="flex w-max animate-marquee gap-0"
         style={{ animationDuration: `${speed}s` }}
       >
         {items.map((src, i) => (
@@ -27,7 +27,7 @@ const Marquee = ({ images = defaultImages, speed = 25, height = "h-56 sm:h-72 md
             key={i}
             src={src}
             alt=""
-            className={`${height} w-auto object-cover flex-shrink-0`}
+            className={`${height} w-auto object-contain flex-shrink-0 block`}
             loading="lazy"
             draggable={false}
           />
