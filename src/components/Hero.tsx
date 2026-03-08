@@ -24,7 +24,7 @@ const Hero = () => {
       </div>
 
       {/* Middle: Scrolling Photos */}
-      <div className="w-full my-8">
+      <div className="w-full my-4">
         <Marquee cardWidth="w-44 sm:w-56 md:w-64" speed={45} />
       </div>
 
