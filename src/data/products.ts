@@ -1,6 +1,7 @@
-import tshirt1 from "@/assets/righe_rosse.jpeg";
-import tshirt2 from "@/assets/rtm_macchina.jpeg";
-import tshirt3 from "@/assets/saponata.jpeg";
+import righeRosse from "@/assets/righe_rosse.jpeg";
+import model2 from "@/assets/model-2.jpg";
+import rtmMacchina from "@/assets/rtm_macchina.jpeg";
+import model4 from "@/assets/model-4.jpg";
 
 export interface Product {
   id: string;
@@ -12,37 +13,21 @@ export interface Product {
 
 export const products: Product[] = [
   {
-    id: "presence-tee-black",
-    name: "Presence Tee — Black",
+    id: "righe-rosse",
+    name: "Righe Rosse",
     description:
       "Heavyweight 240gsm cotton. Oversized boxy fit. Screen-printed front graphic with embossed back detail. Cut and sewn in Italy.",
     price: "€55",
-    images: [tshirt1, tshirt1, tshirt1, tshirt1],
+    images: [righeRosse, model2],
   },
   {
-    id: "presence-tee-white",
-    name: "Presence Tee — White",
+    id: "rtm",
+    name: "RTM",
     description:
       "Heavyweight 240gsm cotton. Oversized boxy fit. Contrast print on premium white base. Cut and sewn in Italy.",
     price: "€55",
-    images: [tshirt2, tshirt2, tshirt2, tshirt2],
+    images: [rtmMacchina, model4],
   },
-  {
-    id: "presence-tee-washed",
-    name: "Presence Tee — Washed",
-    description:
-      "Vintage wash treatment on heavyweight cotton. Relaxed fit with raw hem detail. Each piece is unique. Cut and sewn in Italy.",
-    price: "€60",
-    images: [tshirt3, tshirt3, tshirt3, tshirt3],
-  },
-  {
-    id: "presence-tee-washed",
-    name: "Presence Tee — Washed",
-    description:
-      "Vintage wash treatment on heavyweight cotton. Relaxed fit with raw hem detail. Each piece is unique. Cut and sewn in Italy.",
-    price: "€60",
-    images: [tshirt3, tshirt3, tshirt3, tshirt3],
-  }
 ];
 
 export const getProduct = (id: string) => products.find((p) => p.id === id);
