@@ -17,20 +17,21 @@ const Marquee = ({ images = defaultImages, speed = 40, height = "h-56 sm:h-72 md
   const items = [...images, ...images];
 
   return (
-    <div className="w-full overflow-hidden">
+    <div className="w-full overflow-hidden py-4">
       <div
-        className="flex w-max animate-marquee gap-0"
+        className="flex w-max animate-marquee gap-4"
         style={{ animationDuration: `${speed}s` }}
       >
         {items.map((src, i) => (
-          <img
-            key={i}
-            src={src}
-            alt=""
-            className={`${height} w-auto object-contain flex-shrink-0 block`}
-            loading="lazy"
-            draggable={false}
-          />
+          <div key={i} className="flex-shrink-0">
+            <img
+              src={src}
+              alt=""
+              className={`${height} w-auto object-cover rounded-xl flex-shrink-0 block`}
+              loading="lazy"
+              draggable={false}
+            />
+          </div>
         ))}
       </div>
     </div>
