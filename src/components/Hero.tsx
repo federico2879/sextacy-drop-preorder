@@ -10,7 +10,7 @@ const Hero = () => {
     <section className="relative flex min-h-screen flex-col items-center justify-center text-center overflow-hidden">
       {/* Marquee as background */}
       <div className="absolute inset-0 flex items-center">
-        <Marquee height="h-full" speed={45} />
+        <Marquee height="h-[80%]" speed={45} />
       </div>
       {/* Dark overlay for readability */}
       <div className="absolute inset-0 bg-background/60" />
