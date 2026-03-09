@@ -167,24 +167,30 @@ const ProductPage = () => {
               Measurements in cm. All garments are unisex with a relaxed fit.
             </p>
 
-            <table className="w-full text-xs">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left pb-3 tracking-[0.15em] uppercase text-muted-foreground font-normal">Size</th>
-                  <th className="text-left pb-3 tracking-[0.15em] uppercase text-muted-foreground font-normal">Chest (cm)</th>
-                  <th className="text-left pb-3 tracking-[0.15em] uppercase text-muted-foreground font-normal">Length (cm)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {SIZE_GUIDE.map((row) => (
-                  <tr key={row.size} className="border-b border-border/50 last:border-0">
-                    <td className="py-3 tracking-widest text-foreground">{row.size}</td>
-                    <td className="py-3 text-muted-foreground">{row.chest}</td>
-                    <td className="py-3 text-muted-foreground">{row.length}</td>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="border-b border-border">
+                    <th className="text-left pb-3 pr-3 tracking-[0.15em] uppercase text-muted-foreground font-normal">Size</th>
+                    <th className="text-left pb-3 pr-3 tracking-[0.15em] uppercase text-muted-foreground font-normal">IT</th>
+                    <th className="text-left pb-3 pr-3 tracking-[0.15em] uppercase text-muted-foreground font-normal">Chest</th>
+                    <th className="text-left pb-3 pr-3 tracking-[0.15em] uppercase text-muted-foreground font-normal">Waist</th>
+                    <th className="text-left pb-3 tracking-[0.15em] uppercase text-muted-foreground font-normal">Hip</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {SIZE_GUIDE.map((row) => (
+                    <tr key={row.size} className="border-b border-border/50 last:border-0">
+                      <td className="py-3 pr-3 tracking-widest text-foreground">{row.size}</td>
+                      <td className="py-3 pr-3 text-muted-foreground">{row.it}</td>
+                      <td className="py-3 pr-3 text-muted-foreground">{row.chest}</td>
+                      <td className="py-3 pr-3 text-muted-foreground">{row.waist}</td>
+                      <td className="py-3 text-muted-foreground">{row.hip}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       )}
