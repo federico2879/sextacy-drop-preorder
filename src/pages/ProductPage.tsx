@@ -6,10 +6,13 @@ import { toast } from "@/hooks/use-toast";
 import { ArrowLeft, X } from "lucide-react";
 
 const SIZE_GUIDE = [
-  { size: "S",  chest: "48–51", length: "68–70" },
-  { size: "M",  chest: "52–55", length: "71–73" },
-  { size: "L",  chest: "56–59", length: "74–76" },
-  { size: "XL", chest: "60–63", length: "77–79" },
+  { size: "XXS", it: "40",    chest: "78–83",   waist: "66–71",   hip: "80–84" },
+  { size: "XS",  it: "42/44", chest: "84–89",   waist: "72–77",   hip: "85–91" },
+  { size: "S",   it: "46/48", chest: "90–95",   waist: "78–83",   hip: "92–97" },
+  { size: "M",   it: "48/50", chest: "96–101",  waist: "84–89",   hip: "98–103" },
+  { size: "L",   it: "50/52", chest: "102–107", waist: "90–95",   hip: "104–109" },
+  { size: "XL",  it: "54/56", chest: "108–113", waist: "96–101",  hip: "110–115" },
+  { size: "XXL", it: "58/60", chest: "114–120", waist: "102–108", hip: "116–122" },
 ];
 
 const SIZES = ["S", "M", "L", "XL"] as const;
