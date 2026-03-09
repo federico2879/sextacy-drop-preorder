@@ -26,6 +26,10 @@ const ProductPage = () => {
   const [activeImage, setActiveImage] = useState(0);
   const [showSizeGuide, setShowSizeGuide] = useState(false);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
+
   if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center text-muted-foreground">
