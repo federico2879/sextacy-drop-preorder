@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getProduct } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { toast } from "@/hooks/use-toast";
@@ -18,6 +18,7 @@ const SIZE_GUIDE = [
 const SIZES = ["S", "M", "L", "XL"] as const;
 
 const ProductPage = () => {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const product = getProduct(id || "");
   const { addItem } = useCart();
@@ -49,13 +50,13 @@ const ProductPage = () => {
 
   return (
     <main className="min-h-screen section-padding">
-      <Link
-        to="/"
+      <button
+        onClick={() => navigate(-1)}
         className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors mb-12"
       >
         <ArrowLeft className="w-4 h-4" />
         Back
-      </Link>
+      </button>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
         {/* Images */}
