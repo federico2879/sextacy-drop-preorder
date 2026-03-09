@@ -3,7 +3,14 @@ import { useParams, Link } from "react-router-dom";
 import { getProduct } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { toast } from "@/hooks/use-toast";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, X, Ruler } from "lucide-react";
+
+const SIZE_GUIDE = [
+  { size: "S",  chest: "48–51", length: "68–70" },
+  { size: "M",  chest: "52–55", length: "71–73" },
+  { size: "L",  chest: "56–59", length: "74–76" },
+  { size: "XL", chest: "60–63", length: "77–79" },
+];
 
 const SIZES = ["S", "M", "L", "XL"] as const;
 
