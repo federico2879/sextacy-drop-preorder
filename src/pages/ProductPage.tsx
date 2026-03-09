@@ -18,6 +18,7 @@ const SIZE_GUIDE = [
 const SIZES = ["S", "M", "L", "XL"] as const;
 
 const ProductPage = () => {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const product = getProduct(id || "");
   const { addItem } = useCart();
