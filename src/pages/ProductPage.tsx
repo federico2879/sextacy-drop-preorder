@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { getProduct } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { toast } from "@/hooks/use-toast";
-import { ArrowLeft, X, Ruler } from "lucide-react";
+import { ArrowLeft, X } from "lucide-react";
 
 const SIZE_GUIDE = [
   { size: "S",  chest: "48–51", length: "68–70" },
@@ -20,6 +20,7 @@ const ProductPage = () => {
   const { addItem } = useCart();
   const [selectedSize, setSelectedSize] = useState("");
   const [activeImage, setActiveImage] = useState(0);
+  const [showSizeGuide, setShowSizeGuide] = useState(false);
 
   if (!product) {
     return (
@@ -101,9 +102,17 @@ const ProductPage = () => {
 
           {/* Size selector */}
           <div className="mb-10">
-            <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">
-              Size
-            </p>
+            <div className="flex items-center justify-between mb-4">
+              <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground">
+                Size
+              </p>
+              <button
+                onClick={() => setShowSizeGuide(true)}
+                className="text-xs tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
+              >
+                Size Guide
+              </button>
+            </div>
             <div className="flex gap-3">
               {SIZES.map((size) => (
                 <button
@@ -129,6 +138,53 @@ const ProductPage = () => {
           </button>
         </div>
       </div>
+
+      {/* Size Guide Modal */}
+      {showSizeGuide && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
+          onClick={() => setShowSizeGuide(false)}
+        >
+          <div
+            className="relative bg-card border border-border w-full max-w-sm p-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowSizeGuide(false)}
+              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Close size guide"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            <p className="text-xs tracking-[0.4em] uppercase text-muted-foreground mb-6">
+              Size Guide
+            </p>
+            <p className="text-xs text-muted-foreground mb-6 leading-relaxed">
+              Measurements in cm. All garments are unisex with a relaxed fit.
+            </p>
+
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left pb-3 tracking-[0.15em] uppercase text-muted-foreground font-normal">Size</th>
+                  <th className="text-left pb-3 tracking-[0.15em] uppercase text-muted-foreground font-normal">Chest (cm)</th>
+                  <th className="text-left pb-3 tracking-[0.15em] uppercase text-muted-foreground font-normal">Length (cm)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {SIZE_GUIDE.map((row) => (
+                  <tr key={row.size} className="border-b border-border/50 last:border-0">
+                    <td className="py-3 tracking-widest text-foreground">{row.size}</td>
+                    <td className="py-3 text-muted-foreground">{row.chest}</td>
+                    <td className="py-3 text-muted-foreground">{row.length}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
     </main>
   );
 };
