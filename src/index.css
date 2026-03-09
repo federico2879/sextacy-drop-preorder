@@ -47,10 +47,16 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: 
+      radial-gradient(ellipse at 50% 0%, rgba(220, 37, 37, 0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 50%, rgba(220, 37, 37, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(220, 37, 37, 0.04) 0%, transparent 50%),
+      hsl(var(--background));
+    min-height: 100vh;
   }
 
   ::selection {
