@@ -1,18 +1,34 @@
-import { useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { getProduct } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { toast } from "@/hooks/use-toast";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, X } from "lucide-react";
+
+const SIZE_GUIDE = [
+  { size: "XXS", it: "40",    chest: "78–83",   waist: "66–71",   hip: "80–84" },
+  { size: "XS",  it: "42/44", chest: "84–89",   waist: "72–77",   hip: "85–91" },
+  { size: "S",   it: "46/48", chest: "90–95",   waist: "78–83",   hip: "92–97" },
+  { size: "M",   it: "48/50", chest: "96–101",  waist: "84–89",   hip: "98–103" },
+  { size: "L",   it: "50/52", chest: "102–107", waist: "90–95",   hip: "104–109" },
+  { size: "XL",  it: "54/56", chest: "108–113", waist: "96–101",  hip: "110–115" },
+  { size: "XXL", it: "58/60", chest: "114–120", waist: "102–108", hip: "116–122" },
+];
 
 const SIZES = ["S", "M", "L", "XL"] as const;
 
 const ProductPage = () => {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const product = getProduct(id || "");
   const { addItem } = useCart();
   const [selectedSize, setSelectedSize] = useState("");
   const [activeImage, setActiveImage] = useState(0);
+  const [showSizeGuide, setShowSizeGuide] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   if (!product) {
     return (
@@ -38,13 +54,13 @@ const ProductPage = () => {
 
   return (
     <main className="min-h-screen section-padding">
-      <Link
-        to="/"
+      <button
+        onClick={() => navigate(-1)}
         className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors mb-12"
       >
         <ArrowLeft className="w-4 h-4" />
         Back
-      </Link>
+      </button>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
         {/* Images */}
@@ -94,9 +110,17 @@ const ProductPage = () => {
 
           {/* Size selector */}
           <div className="mb-10">
-            <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">
-              Size
-            </p>
+            <div className="flex items-center justify-between mb-4">
+              <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground">
+                Size
+              </p>
+              <button
+                onClick={() => setShowSizeGuide(true)}
+                className="text-xs tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
+              >
+                Size Guide
+              </button>
+            </div>
             <div className="flex gap-3">
               {SIZES.map((size) => (
                 <button
@@ -122,6 +146,59 @@ const ProductPage = () => {
           </button>
         </div>
       </div>
+
+      {/* Size Guide Modal */}
+      {showSizeGuide && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
+          onClick={() => setShowSizeGuide(false)}
+        >
+          <div
+            className="relative bg-card border border-border w-full max-w-sm p-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowSizeGuide(false)}
+              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Close size guide"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            <p className="text-xs tracking-[0.4em] uppercase text-muted-foreground mb-6">
+              Size Guide
+            </p>
+            <p className="text-xs text-muted-foreground mb-6 leading-relaxed">
+              Measurements in cm. All garments are unisex with a relaxed fit.
+            </p>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="border-b border-border">
+                    <th className="text-left pb-3 pr-3 tracking-[0.15em] uppercase text-muted-foreground font-normal">Size</th>
+                    <th className="text-left pb-3 pr-3 tracking-[0.15em] uppercase text-muted-foreground font-normal">IT</th>
+                    <th className="text-left pb-3 pr-3 tracking-[0.15em] uppercase text-muted-foreground font-normal">Chest</th>
+                    <th className="text-left pb-3 pr-3 tracking-[0.15em] uppercase text-muted-foreground font-normal">Waist</th>
+                    <th className="text-left pb-3 tracking-[0.15em] uppercase text-muted-foreground font-normal">Hip</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {SIZE_GUIDE.map((row) => (
+                    <tr key={row.size} className="border-b border-border/50 last:border-0">
+                      <td className="py-3 pr-3 tracking-widest text-foreground">{row.size}</td>
+                      <td className="py-3 pr-3 text-muted-foreground">{row.it}</td>
+                      <td className="py-3 pr-3 text-muted-foreground">{row.chest}</td>
+                      <td className="py-3 pr-3 text-muted-foreground">{row.waist}</td>
+                      <td className="py-3 text-muted-foreground">{row.hip}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 };
