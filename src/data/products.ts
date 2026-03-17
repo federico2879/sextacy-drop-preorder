@@ -2,7 +2,7 @@
 // Naming convention: <order>-<product_name>-<image_index>.(jpg|jpeg|png)
 
 const assetModules = import.meta.glob<string>(
-  "/src/assets/*.{jpg,jpeg,png}",
+  "../assets/*.{jpg,jpeg,png}",
   { eager: true, import: "default" }
 );
 
