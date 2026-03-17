@@ -58,15 +58,16 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const handleSizeSelect = (size: string, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    addItem({ productId: product.id, productName: product.name, size });
+    addItem({ productId: String(product.id), productName: product.name, size });
     toast({ title: `${product.name} (${size}) added to cart` });
     setShowSizes(false);
   };
 
+  const productUrl = `/product/${product.id}`;
+
   return (
     <div className="group">
-      {/* Image carousel */}
-      <Link to={`/product/${product.id}`} className="block">
+      <Link to={productUrl} className="block">
         <div
           className="relative overflow-hidden bg-card mb-5"
           onTouchStart={handleTouchStart}
@@ -81,7 +82,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
             draggable={false}
           />
 
-          {/* Desktop arrows */}
           {product.images.length > 1 && (
             <>
               <button
@@ -101,7 +101,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
             </>
           )}
 
-          {/* Dot indicators */}
           {product.images.length > 1 && (
             <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
               {product.images.map((_, i) => (
@@ -117,14 +116,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
       </Link>
 
-      {/* Info + Add to Cart */}
       <div className="flex items-start justify-between gap-3">
-        <Link to={`/product/${product.id}`} className="min-w-0">
+        <Link to={productUrl} className="min-w-0">
           <p className="text-sm tracking-[0.15em] uppercase text-foreground">
             {product.name}
           </p>
           <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mt-2">
-            {product.price} — Limited preorder
+            €20 — Limited preorder
           </p>
         </Link>
 
@@ -137,7 +135,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </button>
       </div>
 
-      {/* Size selector */}
       {showSizes && (
         <div className="mt-3 flex gap-2 animate-in fade-in slide-in-from-top-2 duration-200">
           {SIZES.map((size) => (

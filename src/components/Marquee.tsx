@@ -1,11 +1,9 @@
-import model1 from "@/assets/model-1.jpg";
-import model2 from "@/assets/model-2.jpg";
-import model3 from "@/assets/model-3.jpg";
-import model4 from "@/assets/model-4.jpg";
-import model5 from "@/assets/model-5.jpg";
-import model6 from "@/assets/model-6.jpg";
+import { products } from "@/data/products";
 
-const defaultImages = [model1, model2, model3, model4, model5, model6];
+// Collect all heroImages (index-1) from products
+const heroImages = products
+  .map((p) => p.heroImage)
+  .filter((img): img is string => img !== null);
 
 interface MarqueeProps {
   images?: string[];
@@ -13,8 +11,14 @@ interface MarqueeProps {
   cardWidth?: string;
 }
 
-const Marquee = ({ images = defaultImages, speed = 40, cardWidth = "w-48 sm:w-56 md:w-72" }: MarqueeProps) => {
+const Marquee = ({
+  images = heroImages,
+  speed = 40,
+  cardWidth = "w-48 sm:w-56 md:w-72",
+}: MarqueeProps) => {
   const items = [...images, ...images];
+
+  if (images.length === 0) return null;
 
   return (
     <div className="w-full overflow-hidden py-4">
@@ -23,7 +27,10 @@ const Marquee = ({ images = defaultImages, speed = 40, cardWidth = "w-48 sm:w-56
         style={{ animationDuration: `${speed}s` }}
       >
         {items.map((src, i) => (
-          <div key={i} className={`${cardWidth} flex-shrink-0 aspect-[3/4] overflow-hidden rounded-xl`}>
+          <div
+            key={i}
+            className={`${cardWidth} flex-shrink-0 aspect-[3/4] overflow-hidden rounded-xl`}
+          >
             <img
               src={src}
               alt=""

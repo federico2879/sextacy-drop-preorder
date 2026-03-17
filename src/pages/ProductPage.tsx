@@ -44,7 +44,7 @@ const ProductPage = () => {
       return;
     }
     addItem({
-      productId: product.id,
+      productId: String(product.id),
       productName: product.name,
       size: selectedSize,
     });
@@ -101,11 +101,10 @@ const ProductPage = () => {
           <h1 className="text-2xl md:text-3xl tracking-[0.15em] uppercase text-foreground mb-4 font-medium">
             {product.name}
           </h1>
-          <p className="text-lg tracking-wide text-foreground mb-8">
-            {product.price}
-          </p>
+          <p className="text-lg tracking-wide text-foreground mb-8">€20</p>
           <p className="text-sm leading-relaxed text-muted-foreground mb-12 max-w-md">
-            {product.description}
+            Heavyweight 240gsm cotton. Oversized boxy fit. Screen-printed front
+            graphic. Cut and sewn in Italy.
           </p>
 
           {/* Size selector */}
