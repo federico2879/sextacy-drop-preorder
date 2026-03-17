@@ -1,113 +1,80 @@
-import rtmWhite1 from "@/assets/rtm_white_tshirt_1_placeholder.jpg";
-import rtmWhite2 from "@/assets/rtm_white_tshirt_2_placeholder.jpg";
-import blackLS1 from "@/assets/black_long_sleeves_1_placeholder.jpg";
-import blackLS2 from "@/assets/black_long_sleeves_2_placeholder.jpg";
-import rtmMacchina from "@/assets/rtm_macchina.jpeg";
-import model4 from "@/assets/model-4.jpg";
-import righeRosse from "@/assets/righe_rosse.jpeg";
-import model2 from "@/assets/model-2.jpg";
-import redHoodie1 from "@/assets/red_hoodie_1_placeholder.jpg";
-import redHoodie2 from "@/assets/red_hoodie_2_placeholder.jpg";
-import graffito1 from "@/assets/graffito_black_tshirt_1_placeholder.jpg";
-import graffito2 from "@/assets/graffito_black_tshirt_2_placeholder.jpg";
-import saponata1 from "@/assets/saponata_white_tshirt_1_placeholder.jpg";
-import saponata2 from "@/assets/saponata_white_tshirt_2_placeholder.jpg";
-import leccaLecca1 from "@/assets/lecca_lecca_white_tshirt_1_placeholder.jpg";
-import leccaLecca2 from "@/assets/lecca_lecca_white_tshirt_2_placeholder.jpg";
-import blackHoodie1 from "@/assets/black_hoodie_1_placeholder.jpg";
-import blackHoodie2 from "@/assets/black_hoodie_2_placeholder.jpg";
-import righeNere1 from "@/assets/righe_nere_striped_longsleeve_1_placeholder.jpg";
-import righeNere2 from "@/assets/righe_nere_striped_longsleeve_2_placeholder.jpg";
+// Auto-derive products from asset filenames using import.meta.glob
+// Naming convention: <order>-<product_name>-<image_index>.(jpg|jpeg|png)
 
-export interface Product {
-  id: string;
+const assetModules = import.meta.glob<string>(
+  "/src/assets/*.{jpg,jpeg,png}",
+  { eager: true, import: "default" }
+);
+
+// Regex: order separator(- or _) productName separator(- or _) imageIndex . extension
+const FILE_REGEX = /\/(\d+)[-_](.+?)[-_](\d+)\.(jpg|jpeg|png)$/i;
+
+interface RawEntry {
+  order: number;
   name: string;
-  description: string;
-  price: string;
-  images: string[];
+  imageIndex: number;
+  url: string;
 }
 
-export const products: Product[] = [
-  {
-    id: "rtm",
-    name: "RTM",
-    description:
-      "Heavyweight 240gsm cotton. Oversized boxy fit. Screen-printed front graphic. Cut and sewn in Italy.",
-    price: "€20",
-    images: [rtmWhite1, rtmWhite2],
-  },
-  {
-    id: "black-long-sleeves",
-    name: "Black Long Sleeves",
-    description:
-      "Heavyweight 240gsm cotton. Oversized boxy fit. Long sleeve silhouette. Cut and sewn in Italy.",
-    price: "€20",
-    images: [blackLS1, blackLS2],
-  },
-  {
-    id: "rtm-macchina",
-    name: "RTM Macchina",
-    description:
-      "Heavyweight 240gsm cotton. Oversized boxy fit. Contrast print on premium white base. Cut and sewn in Italy.",
-    price: "€20",
-    images: [rtmMacchina, model4],
-  },
-  {
-    id: "righe-rosse",
-    name: "Righe Rosse",
-    description:
-      "Heavyweight 240gsm cotton. Oversized boxy fit. Screen-printed front graphic with embossed back detail. Cut and sewn in Italy.",
-    price: "€20",
-    images: [righeRosse, model2],
-  },
-  {
-    id: "red-hoodie",
-    name: "Red Hoodie",
-    description:
-      "Heavyweight 380gsm cotton. Oversized fit. Kangaroo pocket. Cut and sewn in Italy.",
-    price: "€20",
-    images: [redHoodie1, redHoodie2],
-  },
-  {
-    id: "graffito",
-    name: "Graffito",
-    description:
-      "Heavyweight 240gsm cotton. Oversized boxy fit. Screen-printed front graphic. Cut and sewn in Italy.",
-    price: "€20",
-    images: [graffito1, graffito2],
-  },
-  {
-    id: "saponata",
-    name: "Saponata",
-    description:
-      "Heavyweight 240gsm cotton. Oversized boxy fit. Screen-printed front graphic. Cut and sewn in Italy.",
-    price: "€20",
-    images: [saponata1, saponata2],
-  },
-  {
-    id: "lecca-lecca",
-    name: "Lecca Lecca",
-    description:
-      "Heavyweight 240gsm cotton. Oversized boxy fit. Screen-printed front graphic. Cut and sewn in Italy.",
-    price: "€20",
-    images: [leccaLecca1, leccaLecca2],
-  },
-  {
-    id: "black-hoodie",
-    name: "Black Hoodie",
-    description:
-      "Heavyweight 380gsm cotton. Oversized fit. Kangaroo pocket. Cut and sewn in Italy.",
-    price: "€20",
-    images: [blackHoodie1, blackHoodie2],
-  },
-  {
-    id: "righe-nere",
-    name: "Righe Nere",
-    description:
-      "Heavyweight 240gsm cotton. Oversized boxy fit. Horizontal black and white stripes. Long sleeve. Cut and sewn in Italy.",
-    price: "€20",
-    images: [righeNere1, righeNere2],
-  },
-];
+const entries: RawEntry[] = [];
 
-export const getProduct = (id: string) => products.find((p) => p.id === id);
+for (const [path, url] of Object.entries(assetModules)) {
+  const filename = path.split("/").pop() || "";
+  const match = filename.match(FILE_REGEX);
+  if (!match) continue;
+
+  const order = parseInt(match[1], 10);
+  const rawName = match[2]; // e.g. "Zebra_Sextacy_Tee"
+  const imageIndex = parseInt(match[3], 10);
+
+  entries.push({
+    order,
+    name: rawName.replace(/_/g, " "),
+    imageIndex,
+    url,
+  });
+}
+
+// Group by order + name
+const grouped = new Map<number, { name: string; images: Map<number, string> }>();
+
+for (const entry of entries) {
+  if (!grouped.has(entry.order)) {
+    grouped.set(entry.order, { name: entry.name, images: new Map() });
+  }
+  grouped.get(entry.order)!.images.set(entry.imageIndex, entry.url);
+}
+
+export interface Product {
+  id: number;
+  name: string;
+  images: string[];
+  cover: string;
+  heroImage: string | null;
+}
+
+export const products: Product[] = Array.from(grouped.entries())
+  .sort(([a], [b]) => a - b)
+  .map(([order, data]) => {
+    const sortedEntries = Array.from(data.images.entries()).sort(
+      ([a], [b]) => a - b
+    );
+
+    const cover = data.images.get(0) || sortedEntries[0]?.[1] || "";
+    const heroImage = data.images.get(1) || null;
+
+    // All images sorted by index (for product page gallery)
+    const images = sortedEntries.map(([, url]) => url);
+
+    return {
+      id: order,
+      name: data.name,
+      images,
+      cover,
+      heroImage,
+    };
+  })
+  .filter((p) => p.images.length > 0);
+
+export const getProduct = (id: string) =>
+  products.find((p) => String(p.id) === id);
