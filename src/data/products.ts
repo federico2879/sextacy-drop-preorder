@@ -14,7 +14,7 @@ const graphicsModules = import.meta.glob<string>(
 const assetModules = { ...graphicsModules, ...compressedModules };
 
 // Regex: order separator(- or _) productName separator(- or _) imageIndex . extension
-const FILE_REGEX = /(\d+)[-_](.+?)[-_](\d+)\.(jpg|jpeg|png)$/i;
+const FILE_REGEX = /(\d+)[-_](.+?)[-_](\d+)(?:[-_][FB])?\.(jpg|jpeg|png)$/i;
 
 interface RawEntry {
   order: number;
