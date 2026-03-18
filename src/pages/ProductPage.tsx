@@ -96,7 +96,7 @@ const ProductPage = () => {
         {/* Details */}
         <div className="flex flex-col justify-center">
           <p className="text-xs tracking-[0.4em] uppercase text-muted-foreground mb-4">
-            Drop 01
+            Drop #01
           </p>
           <h1 className="text-2xl md:text-3xl tracking-[0.15em] uppercase text-foreground mb-4 font-medium">
             {product.name}
