@@ -1,13 +1,20 @@
 // Auto-derive products from asset filenames using import.meta.glob
 // Naming convention: <order>-<product_name>-<image_index>.(jpg|jpeg|png)
 
-const assetModules = import.meta.glob<string>(
-  "../assets/*.{jpg,jpeg,png}",
+const compressedModules = import.meta.glob<string>(
+  "../assets/compressed/*.{jpg,jpeg,png}",
   { eager: true, import: "default" }
 );
 
+const graphicsModules = import.meta.glob<string>(
+  "../assets/graphics/*.{jpg,jpeg,png}",
+  { eager: true, import: "default" }
+);
+
+const assetModules = { ...graphicsModules, ...compressedModules };
+
 // Regex: order separator(- or _) productName separator(- or _) imageIndex . extension
-const FILE_REGEX = /(\d+)[-_](.+?)[-_](\d+)\.(jpg|jpeg|png)$/i;
+const FILE_REGEX = /(\d+)[-_](.+?)[-_](\d+)(?:[-_][FB])?\.(jpg|jpeg|png)$/i;
 
 interface RawEntry {
   order: number;
