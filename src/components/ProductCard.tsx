@@ -122,7 +122,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             {product.name}
           </p>
           <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mt-2">
-            €20 — Limited preorder
+            <span className="line-through opacity-60">€25</span>{" "}€20 — Limited preorder
           </p>
         </Link>
 
