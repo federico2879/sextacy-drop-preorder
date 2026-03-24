@@ -82,30 +82,33 @@ export interface Product {
   productPageImages: string[];
 }
 
-// Custom sort order for product page: 1, 100, 101, then 2, 3, 4...
-const PRIORITY_INDICES = [1, 100, 101];
+// Desired product page order: 0_F, 0_B, 0, 1, 100, 101, 2, 3, 4, ...
+// We define a sort weight for each key to enforce this.
+const PAGE_ORDER_KEYS = ["0_F", "0_B", "0", "1", "100", "101"];
 
-function sortProductPageImages(compressed: Map<string, string>): string[] {
-  const priority: string[] = [];
-  for (const idx of PRIORITY_INDICES) {
-    // Check plain key and variant keys
-    for (const suffix of ["", "_F", "_B"]) {
-      const url = compressed.get(`${idx}${suffix}`);
-      if (url) priority.push(url);
-    }
+function sortKeyWeight(key: string): number {
+  const idx = PAGE_ORDER_KEYS.indexOf(key);
+  if (idx !== -1) return idx;
+  // Everything else sorted numerically after the priority keys
+  const num = parseInt(key);
+  return PAGE_ORDER_KEYS.length + (isNaN(num) ? 9999 : num);
+}
+
+function buildProductPageImages(
+  graphics: Map<string, string>,
+  compressed: Map<string, string>
+): string[] {
+  // Merge all images into one list with their keys
+  const all: [string, string][] = [];
+  for (const [key, url] of graphics.entries()) {
+    all.push([key, url]);
   }
-  const priorityKeys = new Set(
-    PRIORITY_INDICES.flatMap((idx) => [`${idx}`, `${idx}_F`, `${idx}_B`])
-  );
-  const rest = Array.from(compressed.entries())
-    .filter(([key]) => !priorityKeys.has(key) && !key.startsWith("0"))
-    .sort(([a], [b]) => {
-      const numA = parseInt(a);
-      const numB = parseInt(b);
-      return numA - numB;
-    })
+  for (const [key, url] of compressed.entries()) {
+    all.push([key, url]);
+  }
+  return all
+    .sort(([a], [b]) => sortKeyWeight(a) - sortKeyWeight(b))
     .map(([, url]) => url);
-  return [...priority, ...rest];
 }
 
 export const products: Product[] = Array.from(grouped.entries())
