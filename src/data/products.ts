@@ -111,6 +111,7 @@ function sortProductPageImages(compressed: Map<string, string>): string[] {
 export const products: Product[] = Array.from(grouped.entries())
   .sort(([a], [b]) => a - b)
   .map(([order, data]) => {
+    const compressed = data.compressed;
     // graphicCover: prefer "0_F", then "0", then first graphic
     const graphicCover = data.graphics.get("0_F") || data.graphics.get("0") || "";
     // All graphic images sorted: F before B
@@ -122,10 +123,8 @@ export const products: Product[] = Array.from(grouped.entries())
         compressed.get(`${idx}`),
         compressed.get(`${idx}_F`),
         compressed.get(`${idx}_B`),
-      ].filter((url): url is string => !!url))
+      ])
       .filter((url): url is string => !!url);
-
-    const compressed = data.compressed;
     const productPageImages = sortProductPageImages(compressed);
 
     return {
