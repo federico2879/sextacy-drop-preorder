@@ -1,9 +1,7 @@
 import { products } from "@/data/products";
 
-// Collect all heroImages (index-1) from products
-const heroImages = products
-  .map((p) => p.heroImage)
-  .filter((img): img is string => img !== null);
+// Collect all lifestyle images (indices 1, 100, 101 from compressed) for the hero marquee
+const lifestyleImages = products.flatMap((p) => p.lifestyleImages);
 
 interface MarqueeProps {
   images?: string[];
@@ -12,7 +10,7 @@ interface MarqueeProps {
 }
 
 const Marquee = ({
-  images = heroImages,
+  images = lifestyleImages,
   speed = 40,
   cardWidth = "w-48 sm:w-56 md:w-72",
 }: MarqueeProps) => {

@@ -38,6 +38,9 @@ const ProductPage = () => {
     );
   }
 
+  // Product page uses all compressed images (ordered: 1, 100, 101, 2, 3...)
+  const images = product.productPageImages;
+
   const handleAdd = () => {
     if (!selectedSize) {
       toast({ title: "Please select a size" });
@@ -67,30 +70,33 @@ const ProductPage = () => {
         <div className="flex flex-col gap-4">
           <div className="overflow-hidden bg-card">
             <img
-              src={product.images[activeImage]}
+              src={images[activeImage]}
               alt={product.name}
               className="w-full aspect-[4/5] object-cover"
             />
           </div>
-          <div className="grid grid-cols-4 gap-3">
-            {product.images.map((img, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveImage(i)}
-                className={`overflow-hidden bg-card border transition-colors ${
-                  activeImage === i
-                    ? "border-foreground"
-                    : "border-border hover:border-muted-foreground"
-                }`}
-              >
-                <img
-                  src={img}
-                  alt={`${product.name} view ${i + 1}`}
-                  className="w-full aspect-square object-cover"
-                />
-              </button>
-            ))}
-          </div>
+          {images.length > 1 && (
+            <div className="grid grid-cols-4 gap-3">
+              {images.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveImage(i)}
+                  className={`overflow-hidden bg-card border transition-colors ${
+                    activeImage === i
+                      ? "border-foreground"
+                      : "border-border hover:border-muted-foreground"
+                  }`}
+                >
+                  <img
+                    src={img}
+                    alt={`${product.name} view ${i + 1}`}
+                    className="w-full aspect-square object-cover"
+                    loading="lazy"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Details */}

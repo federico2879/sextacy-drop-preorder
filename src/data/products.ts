@@ -1,5 +1,5 @@
 // Auto-derive products from asset filenames using import.meta.glob
-// Naming convention: <order>-<product_name>-<image_index>.(jpg|jpeg|png)
+// Naming convention: <order>-<product_name>-<image_index>[-_][FB]?.(jpg|jpeg|png)
 
 const compressedModules = import.meta.glob<string>(
   "../assets/compressed/*.{jpg,jpeg,png}",
@@ -11,9 +11,7 @@ const graphicsModules = import.meta.glob<string>(
   { eager: true, import: "default" }
 );
 
-const assetModules = { ...graphicsModules, ...compressedModules };
-
-// Regex: order separator(- or _) productName separator(- or _) imageIndex . extension
+// Regex: order separator(- or _) productName separator(- or _) imageIndex [optional _F/_B] . extension
 const FILE_REGEX = /(\d+)[-_](.+?)[-_](\d+)(?:[-_][FB])?\.(jpg|jpeg|png)$/i;
 
 interface RawEntry {
@@ -21,67 +19,93 @@ interface RawEntry {
   name: string;
   imageIndex: number;
   url: string;
+  source: "compressed" | "graphics";
 }
 
 const entries: RawEntry[] = [];
 
-for (const [path, url] of Object.entries(assetModules)) {
-  const filename = path.split("/").pop() || "";
-  const match = filename.match(FILE_REGEX);
-  if (!match) continue;
-
-  const order = parseInt(match[1], 10);
-  const rawName = match[2]; // e.g. "Zebra_Sextacy_Tee"
-  const imageIndex = parseInt(match[3], 10);
-
-  entries.push({
-    order,
-    name: rawName.replace(/_/g, " "),
-    imageIndex,
-    url,
-  });
+function parseModules(modules: Record<string, string>, source: "compressed" | "graphics") {
+  for (const [path, url] of Object.entries(modules)) {
+    const filename = path.split("/").pop() || "";
+    const match = filename.match(FILE_REGEX);
+    if (!match) continue;
+    entries.push({
+      order: parseInt(match[1], 10),
+      name: match[2].replace(/_/g, " "),
+      imageIndex: parseInt(match[3], 10),
+      url,
+      source,
+    });
+  }
 }
 
-// Group by order + name
-const grouped = new Map<number, { name: string; images: Map<number, string> }>();
+parseModules(compressedModules, "compressed");
+parseModules(graphicsModules, "graphics");
+
+// Group by order
+const grouped = new Map<number, {
+  name: string;
+  graphics: Map<number, string>;
+  compressed: Map<number, string>;
+}>();
 
 for (const entry of entries) {
   if (!grouped.has(entry.order)) {
-    grouped.set(entry.order, { name: entry.name, images: new Map() });
+    grouped.set(entry.order, { name: entry.name, graphics: new Map(), compressed: new Map() });
   }
-  grouped.get(entry.order)!.images.set(entry.imageIndex, entry.url);
+  const group = grouped.get(entry.order)!;
+  if (entry.source === "graphics") {
+    group.graphics.set(entry.imageIndex, entry.url);
+  } else {
+    group.compressed.set(entry.imageIndex, entry.url);
+  }
 }
 
 export interface Product {
   id: number;
   name: string;
-  images: string[];
-  cover: string;
-  heroImage: string | null;
+  /** Graphic cover image (index 0 from graphics folder) */
+  graphicCover: string;
+  /** Lifestyle/on-body images (indices 1, 100, 101 from compressed) for hero */
+  lifestyleImages: string[];
+  /** All compressed images sorted: 1, 100, 101, 2, 3, ... for product page */
+  productPageImages: string[];
+}
+
+// Custom sort order for product page: 1, 100, 101, then 2, 3, 4...
+const PRIORITY_INDICES = [1, 100, 101];
+
+function sortProductPageImages(compressed: Map<number, string>): string[] {
+  const priority: string[] = [];
+  for (const idx of PRIORITY_INDICES) {
+    const url = compressed.get(idx);
+    if (url) priority.push(url);
+  }
+  const rest = Array.from(compressed.entries())
+    .filter(([idx]) => !PRIORITY_INDICES.includes(idx) && idx !== 0)
+    .sort(([a], [b]) => a - b)
+    .map(([, url]) => url);
+  return [...priority, ...rest];
 }
 
 export const products: Product[] = Array.from(grouped.entries())
   .sort(([a], [b]) => a - b)
   .map(([order, data]) => {
-    const sortedEntries = Array.from(data.images.entries()).sort(
-      ([a], [b]) => a - b
-    );
-
-    const cover = data.images.get(0) || sortedEntries[0]?.[1] || "";
-    const heroImage = data.images.get(1) || null;
-
-    // All images sorted by index (for product page gallery)
-    const images = sortedEntries.map(([, url]) => url);
+    const graphicCover = data.graphics.get(0) || "";
+    const lifestyleImages = PRIORITY_INDICES
+      .map((idx) => data.compressed.get(idx))
+      .filter((url): url is string => !!url);
+    const productPageImages = sortProductPageImages(data.compressed);
 
     return {
       id: order,
       name: data.name,
-      images,
-      cover,
-      heroImage,
+      graphicCover,
+      lifestyleImages,
+      productPageImages,
     };
   })
-  .filter((p) => p.images.length > 0);
+  .filter((p) => p.graphicCover || p.productPageImages.length > 0);
 
 export const getProduct = (id: string) =>
   products.find((p) => String(p.id) === id);

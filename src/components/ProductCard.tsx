@@ -1,5 +1,5 @@
-import { useState, useRef } from "react";
-import { ChevronLeft, ChevronRight, ShoppingBag } from "lucide-react";
+import { useState } from "react";
+import { ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 import { type Product } from "@/data/products";
 import { useCart } from "@/context/CartContext";
@@ -12,42 +12,8 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const [activeImage, setActiveImage] = useState(0);
   const [showSizes, setShowSizes] = useState(false);
   const { addItem } = useCart();
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
-
-  const prevImage = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setActiveImage((prev) => (prev === 0 ? product.images.length - 1 : prev - 1));
-  };
-
-  const nextImage = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setActiveImage((prev) => (prev === product.images.length - 1 ? 0 : prev + 1));
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    const diff = touchStartX.current - touchEndX.current;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) {
-        setActiveImage((prev) => (prev === product.images.length - 1 ? 0 : prev + 1));
-      } else {
-        setActiveImage((prev) => (prev === 0 ? product.images.length - 1 : prev - 1));
-      }
-    }
-  };
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -68,51 +34,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div className="group">
       <Link to={productUrl} className="block">
-        <div
-          className="relative overflow-hidden bg-card mb-5"
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        >
+        <div className="relative overflow-hidden bg-card mb-5">
           <img
-            src={product.images[activeImage]}
+            src={product.graphicCover}
             alt={product.name}
             className="w-full aspect-[4/5] object-cover transition-opacity duration-300"
             loading="lazy"
             draggable={false}
           />
-
-          {product.images.length > 1 && (
-            <>
-              <button
-                onClick={prevImage}
-                className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-background/70 text-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm"
-                aria-label="Previous image"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                onClick={nextImage}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-background/70 text-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm"
-                aria-label="Next image"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </>
-          )}
-
-          {product.images.length > 1 && (
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
-              {product.images.map((_, i) => (
-                <span
-                  key={i}
-                  className={`w-1.5 h-1.5 rounded-full transition-colors ${
-                    i === activeImage ? "bg-foreground" : "bg-foreground/30"
-                  }`}
-                />
-              ))}
-            </div>
-          )}
         </div>
       </Link>
 
