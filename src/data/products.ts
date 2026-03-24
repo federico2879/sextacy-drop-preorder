@@ -12,12 +12,13 @@ const graphicsModules = import.meta.glob<string>(
 );
 
 // Regex: order separator(- or _) productName separator(- or _) imageIndex [optional _F/_B] . extension
-const FILE_REGEX = /(\d+)[-_](.+?)[-_](\d+)(?:[-_][FB])?\.(jpg|jpeg|png)$/i;
+const FILE_REGEX = /(\d+)[-_](.+?)[-_](\d+)(?:[-_]([FB]))?\.(jpg|jpeg|png)$/i;
 
 interface RawEntry {
   order: number;
   name: string;
   imageIndex: number;
+  variant: string; // "F", "B", or ""
   url: string;
   source: "compressed" | "graphics";
 }
@@ -33,6 +34,7 @@ function parseModules(modules: Record<string, string>, source: "compressed" | "g
       order: parseInt(match[1], 10),
       name: match[2].replace(/_/g, " "),
       imageIndex: parseInt(match[3], 10),
+      variant: (match[4] || "").toUpperCase(),
       url,
       source,
     });
@@ -42,11 +44,16 @@ function parseModules(modules: Record<string, string>, source: "compressed" | "g
 parseModules(compressedModules, "compressed");
 parseModules(graphicsModules, "graphics");
 
+// Use string keys like "0", "0_F", "0_B" to keep all variants
+function entryKey(imageIndex: number, variant: string): string {
+  return variant ? `${imageIndex}_${variant}` : `${imageIndex}`;
+}
+
 // Group by order
 const grouped = new Map<number, {
   name: string;
-  graphics: Map<number, string>;
-  compressed: Map<number, string>;
+  graphics: Map<string, string>;
+  compressed: Map<string, string>;
 }>();
 
 for (const entry of entries) {
@@ -54,10 +61,11 @@ for (const entry of entries) {
     grouped.set(entry.order, { name: entry.name, graphics: new Map(), compressed: new Map() });
   }
   const group = grouped.get(entry.order)!;
+  const key = entryKey(entry.imageIndex, entry.variant);
   if (entry.source === "graphics") {
-    group.graphics.set(entry.imageIndex, entry.url);
+    group.graphics.set(key, entry.url);
   } else {
-    group.compressed.set(entry.imageIndex, entry.url);
+    group.compressed.set(key, entry.url);
   }
 }
 
