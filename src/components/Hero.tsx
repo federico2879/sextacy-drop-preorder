@@ -11,7 +11,7 @@ const Hero = () => {
       {/* Top: Title & Subtitle */}
       <div className="flex flex-col items-center text-center pt-8 sm:pt-12">
         <p className="mb-4 text-xs tracking-[0.4em] uppercase text-muted-foreground">
-          Drop #01
+          Drop // 01
         </p>
         <img
           src={logo}
@@ -25,7 +25,7 @@ const Hero = () => {
 
       {/* Middle: Scrolling Photos */}
       <div className="w-full my-4">
-        <Marquee cardWidth="w-44 sm:w-56 md:w-64" speed={45} />
+        <Marquee cardWidth="w-44 sm:w-56 md:w-64" speed={65} />
       </div>
 
       {/* Bottom: CTA Button */}
