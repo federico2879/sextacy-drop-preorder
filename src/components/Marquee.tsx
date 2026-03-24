@@ -35,7 +35,8 @@ const Marquee = ({
               src={src}
               alt=""
               className="h-full w-full object-cover block"
-              loading="lazy"
+              loading={i < 6 ? "eager" : "lazy"}
+              fetchPriority={i < 3 ? "high" : "auto"}
               draggable={false}
             />
           </div>
