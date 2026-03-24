@@ -13,6 +13,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const [showSizes, setShowSizes] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const { addItem } = useCart();
 
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -35,12 +36,18 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <div className="group">
       <Link to={productUrl} className="block">
         <div className="relative overflow-hidden bg-card mb-5">
+          {!imageLoaded && (
+            <div className="absolute inset-0 bg-muted animate-pulse" />
+          )}
           <img
             src={product.graphicCover}
             alt={product.name}
-            className="w-full aspect-[4/5] object-cover transition-opacity duration-300"
+            className={`w-full aspect-[4/5] object-cover transition-all duration-500 group-hover:scale-105 ${
+              imageLoaded ? "opacity-100" : "opacity-0"
+            }`}
             loading="lazy"
             draggable={false}
+            onLoad={() => setImageLoaded(true)}
           />
         </div>
       </Link>
