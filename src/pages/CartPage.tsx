@@ -1,7 +1,13 @@
 import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
+import { products } from "@/data/products";
 import { ArrowLeft, X } from "lucide-react";
+
+const getProductImage = (productId: string) => {
+  const product = products.find((p) => String(p.id) === productId);
+  return product?.graphicCover || "";
+};
 
 const CartPage = () => {
   const { items, removeItem, clearCart } = useCart();
@@ -12,7 +18,6 @@ const CartPage = () => {
     const form = e.currentTarget;
     const data = new FormData(form);
 
-    // Append cart summary as a single field
     const cartSummary = items
       .map((item, i) => `${i + 1}. ${item.productName} — Size ${item.size}`)
       .join(" | ");
@@ -86,27 +91,39 @@ const CartPage = () => {
         <>
           {/* Cart items */}
           <div className="flex flex-col gap-4 mb-12">
-            {items.map((item, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-between border-b border-border pb-4"
-              >
-                <div>
-                  <p className="text-sm tracking-[0.15em] uppercase text-foreground">
-                    {item.productName}
-                  </p>
-                  <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mt-1">
-                    Size {item.size}
-                  </p>
-                </div>
-                <button
-                  onClick={() => removeItem(i)}
-                  className="text-muted-foreground hover:text-foreground transition-colors p-1"
+            {items.map((item, i) => {
+              const image = getProductImage(item.productId);
+              return (
+                <div
+                  key={i}
+                  className="flex items-center gap-4 border-b border-border pb-4"
                 >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-            ))}
+                  {image && (
+                    <div className="w-16 h-20 flex-shrink-0 overflow-hidden bg-card">
+                      <img
+                        src={image}
+                        alt={item.productName}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm tracking-[0.15em] uppercase text-foreground">
+                      {item.productName}
+                    </p>
+                    <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mt-1">
+                      Size {item.size}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => removeItem(i)}
+                    className="text-muted-foreground hover:text-foreground transition-colors p-1"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              );
+            })}
           </div>
 
           {/* Preorder form */}

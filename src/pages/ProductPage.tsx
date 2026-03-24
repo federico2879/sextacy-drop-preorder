@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getProduct } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { toast } from "@/hooks/use-toast";
-import { ArrowLeft, X } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight, X } from "lucide-react";
 
 const SIZE_GUIDE = [
   { size: "XXS", it: "40",    chest: "78–83",   waist: "66–71",   hip: "80–84" },
@@ -26,6 +26,9 @@ const ProductPage = () => {
   const [activeImage, setActiveImage] = useState(0);
   const [showSizeGuide, setShowSizeGuide] = useState(false);
 
+  // Swipe support
+  const touchStartX = useRef<number | null>(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
@@ -38,8 +41,24 @@ const ProductPage = () => {
     );
   }
 
-  // Product page uses all compressed images (ordered: 1, 100, 101, 2, 3...)
-  const images = product.productPageImages;
+  // Combine compressed images + graphic images
+  const images = [...product.productPageImages, ...product.graphicImages];
+
+  const goNext = () => setActiveImage((prev) => (prev + 1) % images.length);
+  const goPrev = () => setActiveImage((prev) => (prev - 1 + images.length) % images.length);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? goNext() : goPrev();
+    }
+    touchStartX.current = null;
+  };
 
   const handleAdd = () => {
     if (!selectedSize) {
@@ -68,12 +87,47 @@ const ProductPage = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
         {/* Images */}
         <div className="flex flex-col gap-4">
-          <div className="overflow-hidden bg-card">
+          <div
+            className="relative overflow-hidden bg-card group"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             <img
               src={images[activeImage]}
               alt={product.name}
-              className="w-full aspect-[4/5] object-cover"
+              className="w-full aspect-[4/5] object-cover transition-opacity duration-300"
             />
+            {images.length > 1 && (
+              <>
+                <button
+                  onClick={goPrev}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-background/70 backdrop-blur-sm border border-border text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-background"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={goNext}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-background/70 backdrop-blur-sm border border-border text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-background"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+                {/* Dots indicator */}
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+                  {images.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveImage(i)}
+                      className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                        activeImage === i ? "bg-foreground" : "bg-foreground/30"
+                      }`}
+                      aria-label={`View image ${i + 1}`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
           </div>
           {images.length > 1 && (
             <div className="grid grid-cols-4 gap-3">
@@ -102,7 +156,7 @@ const ProductPage = () => {
         {/* Details */}
         <div className="flex flex-col justify-center">
           <p className="text-xs tracking-[0.4em] uppercase text-muted-foreground mb-4">
-            Drop #01
+            Drop // 01
           </p>
           <h1 className="text-2xl md:text-3xl tracking-[0.15em] uppercase text-foreground mb-4 font-medium">
             {product.name}
