@@ -2,7 +2,7 @@ import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
 import { products } from "@/data/products";
-import { ArrowLeft, X } from "lucide-react";
+import { ArrowLeft, Minus, Plus, Trash2 } from "lucide-react";
 
 const getProductImage = (productId: string) => {
   const product = products.find((p) => String(p.id) === productId);
@@ -10,8 +10,53 @@ const getProductImage = (productId: string) => {
 };
 
 const CartPage = () => {
-  const { items, removeItem, clearCart } = useCart();
+  const { items, removeItem, clearCart, addItem } = useCart();
   const [submitted, setSubmitted] = useState(false);
+
+  // Group items by productId + size for quantity display
+  interface GroupedItem {
+    productId: string;
+    productName: string;
+    size: string;
+    qty: number;
+    indices: number[];
+  }
+
+  const grouped: GroupedItem[] = [];
+  items.forEach((item, i) => {
+    const existing = grouped.find(
+      (g) => g.productId === item.productId && g.size === item.size
+    );
+    if (existing) {
+      existing.qty++;
+      existing.indices.push(i);
+    } else {
+      grouped.push({
+        productId: item.productId,
+        productName: item.productName,
+        size: item.size,
+        qty: 1,
+        indices: [i],
+      });
+    }
+  });
+
+  const handleIncrement = (g: GroupedItem) => {
+    addItem({ productId: g.productId, productName: g.productName, size: g.size });
+  };
+
+  const handleDecrement = (g: GroupedItem) => {
+    if (g.qty > 0) {
+      removeItem(g.indices[g.indices.length - 1]);
+    }
+  };
+
+  const handleRemoveAll = (g: GroupedItem) => {
+    // Remove from last to first to avoid index shifting
+    for (let i = g.indices.length - 1; i >= 0; i--) {
+      removeItem(g.indices[i]);
+    }
+  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -89,37 +134,57 @@ const CartPage = () => {
         </div>
       ) : (
         <>
-          {/* Cart items */}
           <div className="flex flex-col gap-4 mb-12">
-            {items.map((item, i) => {
-              const image = getProductImage(item.productId);
+            {grouped.map((g, i) => {
+              const image = getProductImage(g.productId);
               return (
                 <div
-                  key={i}
+                  key={`${g.productId}-${g.size}-${i}`}
                   className="flex items-center gap-4 border-b border-border pb-4"
                 >
                   {image && (
-                    <div className="w-16 h-20 flex-shrink-0 overflow-hidden bg-card">
+                    <Link to={`/product/${g.productId}`} className="w-16 h-20 flex-shrink-0 overflow-hidden bg-card">
                       <img
                         src={image}
-                        alt={item.productName}
+                        alt={g.productName}
                         className="w-full h-full object-cover"
                       />
-                    </div>
+                    </Link>
                   )}
                   <div className="flex-1 min-w-0">
                     <p className="text-sm tracking-[0.15em] uppercase text-foreground">
-                      {item.productName}
+                      {g.productName}
                     </p>
                     <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mt-1">
-                      Size {item.size}
+                      Size {g.size} · €20
                     </p>
                   </div>
+                  {/* Quantity controls */}
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => handleDecrement(g)}
+                      className="w-8 h-8 border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
+                      aria-label="Decrease quantity"
+                    >
+                      <Minus className="w-3 h-3" />
+                    </button>
+                    <span className="text-xs tracking-widest text-foreground w-6 text-center">
+                      {g.qty}
+                    </span>
+                    <button
+                      onClick={() => handleIncrement(g)}
+                      className="w-8 h-8 border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
+                      aria-label="Increase quantity"
+                    >
+                      <Plus className="w-3 h-3" />
+                    </button>
+                  </div>
                   <button
-                    onClick={() => removeItem(i)}
-                    className="text-muted-foreground hover:text-foreground transition-colors p-1"
+                    onClick={() => handleRemoveAll(g)}
+                    className="text-muted-foreground hover:text-destructive transition-colors p-2"
+                    aria-label="Remove item"
                   >
-                    <X className="w-4 h-4" />
+                    <Trash2 className="w-4 h-4" />
                   </button>
                 </div>
               );
