@@ -66,6 +66,8 @@ export interface Product {
   name: string;
   /** Graphic cover image (index 0 from graphics folder) */
   graphicCover: string;
+  /** All graphic images for product page gallery */
+  graphicImages: string[];
   /** Lifestyle/on-body images (indices 1, 100, 101 from compressed) for hero */
   lifestyleImages: string[];
   /** All compressed images sorted: 1, 100, 101, 2, 3, ... for product page */
@@ -92,6 +94,9 @@ export const products: Product[] = Array.from(grouped.entries())
   .sort(([a], [b]) => a - b)
   .map(([order, data]) => {
     const graphicCover = data.graphics.get(0) || "";
+    const graphicImages = Array.from(data.graphics.entries())
+      .sort(([a], [b]) => a - b)
+      .map(([, url]) => url);
     const lifestyleImages = PRIORITY_INDICES
       .map((idx) => data.compressed.get(idx))
       .filter((url): url is string => !!url);
@@ -101,6 +106,7 @@ export const products: Product[] = Array.from(grouped.entries())
       id: order,
       name: data.name,
       graphicCover,
+      graphicImages,
       lifestyleImages,
       productPageImages,
     };
