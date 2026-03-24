@@ -12,12 +12,13 @@ const graphicsModules = import.meta.glob<string>(
 );
 
 // Regex: order separator(- or _) productName separator(- or _) imageIndex [optional _F/_B] . extension
-const FILE_REGEX = /(\d+)[-_](.+?)[-_](\d+)(?:[-_][FB])?\.(jpg|jpeg|png)$/i;
+const FILE_REGEX = /(\d+)[-_](.+?)[-_](\d+)(?:[-_]([FB]))?\.(jpg|jpeg|png)$/i;
 
 interface RawEntry {
   order: number;
   name: string;
   imageIndex: number;
+  variant: string; // "F", "B", or ""
   url: string;
   source: "compressed" | "graphics";
 }
@@ -33,6 +34,7 @@ function parseModules(modules: Record<string, string>, source: "compressed" | "g
       order: parseInt(match[1], 10),
       name: match[2].replace(/_/g, " "),
       imageIndex: parseInt(match[3], 10),
+      variant: (match[4] || "").toUpperCase(),
       url,
       source,
     });
@@ -42,11 +44,16 @@ function parseModules(modules: Record<string, string>, source: "compressed" | "g
 parseModules(compressedModules, "compressed");
 parseModules(graphicsModules, "graphics");
 
+// Use string keys like "0", "0_F", "0_B" to keep all variants
+function entryKey(imageIndex: number, variant: string): string {
+  return variant ? `${imageIndex}_${variant}` : `${imageIndex}`;
+}
+
 // Group by order
 const grouped = new Map<number, {
   name: string;
-  graphics: Map<number, string>;
-  compressed: Map<number, string>;
+  graphics: Map<string, string>;
+  compressed: Map<string, string>;
 }>();
 
 for (const entry of entries) {
@@ -54,10 +61,11 @@ for (const entry of entries) {
     grouped.set(entry.order, { name: entry.name, graphics: new Map(), compressed: new Map() });
   }
   const group = grouped.get(entry.order)!;
+  const key = entryKey(entry.imageIndex, entry.variant);
   if (entry.source === "graphics") {
-    group.graphics.set(entry.imageIndex, entry.url);
+    group.graphics.set(key, entry.url);
   } else {
-    group.compressed.set(entry.imageIndex, entry.url);
+    group.compressed.set(key, entry.url);
   }
 }
 
@@ -77,15 +85,25 @@ export interface Product {
 // Custom sort order for product page: 1, 100, 101, then 2, 3, 4...
 const PRIORITY_INDICES = [1, 100, 101];
 
-function sortProductPageImages(compressed: Map<number, string>): string[] {
+function sortProductPageImages(compressed: Map<string, string>): string[] {
   const priority: string[] = [];
   for (const idx of PRIORITY_INDICES) {
-    const url = compressed.get(idx);
-    if (url) priority.push(url);
+    // Check plain key and variant keys
+    for (const suffix of ["", "_F", "_B"]) {
+      const url = compressed.get(`${idx}${suffix}`);
+      if (url) priority.push(url);
+    }
   }
+  const priorityKeys = new Set(
+    PRIORITY_INDICES.flatMap((idx) => [`${idx}`, `${idx}_F`, `${idx}_B`])
+  );
   const rest = Array.from(compressed.entries())
-    .filter(([idx]) => !PRIORITY_INDICES.includes(idx) && idx !== 0)
-    .sort(([a], [b]) => a - b)
+    .filter(([key]) => !priorityKeys.has(key) && !key.startsWith("0"))
+    .sort(([a], [b]) => {
+      const numA = parseInt(a);
+      const numB = parseInt(b);
+      return numA - numB;
+    })
     .map(([, url]) => url);
   return [...priority, ...rest];
 }
@@ -93,14 +111,21 @@ function sortProductPageImages(compressed: Map<number, string>): string[] {
 export const products: Product[] = Array.from(grouped.entries())
   .sort(([a], [b]) => a - b)
   .map(([order, data]) => {
-    const graphicCover = data.graphics.get(0) || "";
+    const compressed = data.compressed;
+    // graphicCover: prefer "0_F", then "0", then first graphic
+    const graphicCover = data.graphics.get("0_F") || data.graphics.get("0") || "";
+    // All graphic images sorted: F before B
     const graphicImages = Array.from(data.graphics.entries())
-      .sort(([a], [b]) => a - b)
+      .sort(([a], [b]) => a.localeCompare(b))
       .map(([, url]) => url);
     const lifestyleImages = PRIORITY_INDICES
-      .map((idx) => data.compressed.get(idx))
+      .flatMap((idx) => [
+        compressed.get(`${idx}`),
+        compressed.get(`${idx}_F`),
+        compressed.get(`${idx}_B`),
+      ])
       .filter((url): url is string => !!url);
-    const productPageImages = sortProductPageImages(data.compressed);
+    const productPageImages = sortProductPageImages(compressed);
 
     return {
       id: order,
