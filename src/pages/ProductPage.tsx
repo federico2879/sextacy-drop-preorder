@@ -41,8 +41,8 @@ const ProductPage = () => {
     );
   }
 
-  // Combine compressed images + graphic images
-  const images = [...product.productPageImages, ...product.graphicImages];
+  // All images in correct order (0_F, 0_B, 1, 100, 101, 2, 3, ...)
+  const images = product.productPageImages;
 
   const goNext = () => setActiveImage((prev) => (prev + 1) % images.length);
   const goPrev = () => setActiveImage((prev) => (prev - 1 + images.length) % images.length);
