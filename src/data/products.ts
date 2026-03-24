@@ -115,20 +115,18 @@ export const products: Product[] = Array.from(grouped.entries())
   .sort(([a], [b]) => a - b)
   .map(([order, data]) => {
     const compressed = data.compressed;
-    // graphicCover: prefer "0_F", then "0", then first graphic
     const graphicCover = data.graphics.get("0_F") || data.graphics.get("0") || "";
-    // All graphic images sorted: F before B
     const graphicImages = Array.from(data.graphics.entries())
       .sort(([a], [b]) => a.localeCompare(b))
       .map(([, url]) => url);
-    const lifestyleImages = PRIORITY_INDICES
+    const lifestyleImages = [1, 100, 101]
       .flatMap((idx) => [
         compressed.get(`${idx}`),
         compressed.get(`${idx}_F`),
         compressed.get(`${idx}_B`),
       ])
       .filter((url): url is string => !!url);
-    const productPageImages = sortProductPageImages(compressed);
+    const productPageImages = buildProductPageImages(data.graphics, compressed);
 
     return {
       id: order,
