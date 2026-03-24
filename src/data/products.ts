@@ -85,15 +85,25 @@ export interface Product {
 // Custom sort order for product page: 1, 100, 101, then 2, 3, 4...
 const PRIORITY_INDICES = [1, 100, 101];
 
-function sortProductPageImages(compressed: Map<number, string>): string[] {
+function sortProductPageImages(compressed: Map<string, string>): string[] {
   const priority: string[] = [];
   for (const idx of PRIORITY_INDICES) {
-    const url = compressed.get(idx);
-    if (url) priority.push(url);
+    // Check plain key and variant keys
+    for (const suffix of ["", "_F", "_B"]) {
+      const url = compressed.get(`${idx}${suffix}`);
+      if (url) priority.push(url);
+    }
   }
+  const priorityKeys = new Set(
+    PRIORITY_INDICES.flatMap((idx) => [`${idx}`, `${idx}_F`, `${idx}_B`])
+  );
   const rest = Array.from(compressed.entries())
-    .filter(([idx]) => !PRIORITY_INDICES.includes(idx) && idx !== 0)
-    .sort(([a], [b]) => a - b)
+    .filter(([key]) => !priorityKeys.has(key) && !key.startsWith("0"))
+    .sort(([a], [b]) => {
+      const numA = parseInt(a);
+      const numB = parseInt(b);
+      return numA - numB;
+    })
     .map(([, url]) => url);
   return [...priority, ...rest];
 }
@@ -101,14 +111,22 @@ function sortProductPageImages(compressed: Map<number, string>): string[] {
 export const products: Product[] = Array.from(grouped.entries())
   .sort(([a], [b]) => a - b)
   .map(([order, data]) => {
-    const graphicCover = data.graphics.get(0) || "";
+    // graphicCover: prefer "0_F", then "0", then first graphic
+    const graphicCover = data.graphics.get("0_F") || data.graphics.get("0") || "";
+    // All graphic images sorted: F before B
     const graphicImages = Array.from(data.graphics.entries())
-      .sort(([a], [b]) => a - b)
+      .sort(([a], [b]) => a.localeCompare(b))
       .map(([, url]) => url);
     const lifestyleImages = PRIORITY_INDICES
-      .map((idx) => data.compressed.get(idx))
+      .flatMap((idx) => [
+        compressed.get(`${idx}`),
+        compressed.get(`${idx}_F`),
+        compressed.get(`${idx}_B`),
+      ].filter((url): url is string => !!url))
       .filter((url): url is string => !!url);
-    const productPageImages = sortProductPageImages(data.compressed);
+
+    const compressed = data.compressed;
+    const productPageImages = sortProductPageImages(compressed);
 
     return {
       id: order,
