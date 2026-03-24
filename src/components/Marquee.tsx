@@ -1,7 +1,9 @@
 import { products } from "@/data/products";
 
-// Collect all lifestyle images (indices 1, 100, 101 from compressed) for the hero marquee
-const lifestyleImages = products.flatMap((p) => p.lifestyleImages);
+// Use only the FIRST lifestyle image per product for a lighter initial load
+const lifestyleImages = products
+  .map((p) => p.lifestyleImages[0])
+  .filter((url): url is string => !!url);
 
 interface MarqueeProps {
   images?: string[];
@@ -33,7 +35,8 @@ const Marquee = ({
               src={src}
               alt=""
               className="h-full w-full object-cover block"
-              loading="lazy"
+              loading={i < 6 ? "eager" : "lazy"}
+              fetchPriority={i < 3 ? "high" : "auto"}
               draggable={false}
             />
           </div>
