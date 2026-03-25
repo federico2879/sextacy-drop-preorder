@@ -15,28 +15,86 @@ const PrivacyPolicy = () => (
       Privacy Policy
     </h1>
 
-    <div className="space-y-8 text-sm tracking-wide text-muted-foreground leading-relaxed">
+    <div className="space-y-10 text-sm tracking-wide text-muted-foreground leading-relaxed">
       <p>
-        Your personal data (name, email, phone number, Instagram handle) is collected solely for the purpose of managing your preorder and contacting you to complete your purchase.
+        We respect your privacy and are committed to protecting your personal data.
       </p>
-      <p>
-        We do not share, sell, or distribute your data to third parties. Your information is stored securely and will only be used for order-related communications.
-      </p>
-      <p>
-        By submitting the preorder form, you consent to the processing of your personal data as described above.
-      </p>
-      <p>
-        For any questions or requests regarding your data, contact us via Instagram at{" "}
-        <a
-          href="https://instagram.com/sextacy.rtm"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-foreground underline underline-offset-4 hover:opacity-70 transition-opacity"
-        >
-          @sextacy.rtm
-        </a>
-        .
-      </p>
+
+      <div>
+        <h2 className="text-xs tracking-[0.3em] uppercase text-foreground mb-4">
+          1. Data We Collect
+        </h2>
+        <p className="mb-2">We may collect:</p>
+        <ul className="list-disc list-inside space-y-1 pl-2">
+          <li>Name</li>
+          <li>Email address</li>
+          <li>Phone / WhatsApp number</li>
+          <li>Preorder details (selected products, sizes, quantities)</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 className="text-xs tracking-[0.3em] uppercase text-foreground mb-4">
+          2. Purpose of Data Collection
+        </h2>
+        <p className="mb-2">We collect this data only to:</p>
+        <ul className="list-disc list-inside space-y-1 pl-2">
+          <li>Manage and confirm preorders</li>
+          <li>Contact customers regarding their order</li>
+          <li>Provide customer support related to the preorder</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 className="text-xs tracking-[0.3em] uppercase text-foreground mb-4">
+          3. How Data Is Stored
+        </h2>
+        <p>
+          Submitted form data may be processed and stored using third-party tools such as Google Forms and Google Sheets.
+        </p>
+      </div>
+
+      <div>
+        <h2 className="text-xs tracking-[0.3em] uppercase text-foreground mb-4">
+          4. Data Sharing
+        </h2>
+        <p>
+          We do not sell your personal data. We only use the submitted information for preorder management.
+        </p>
+      </div>
+
+      <div>
+        <h2 className="text-xs tracking-[0.3em] uppercase text-foreground mb-4">
+          5. Data Retention
+        </h2>
+        <p>
+          We keep personal data only for as long as necessary to manage preorders and related communication.
+        </p>
+      </div>
+
+      <div>
+        <h2 className="text-xs tracking-[0.3em] uppercase text-foreground mb-4">
+          6. Your Rights
+        </h2>
+        <p>
+          You may request access, correction, or deletion of your personal data by contacting us.
+        </p>
+      </div>
+
+      <div>
+        <h2 className="text-xs tracking-[0.3em] uppercase text-foreground mb-4">
+          7. Contact
+        </h2>
+        <p>
+          For any privacy-related request, contact us at:{" "}
+          <a
+            href="mailto:info@sextacy.world"
+            className="text-foreground underline underline-offset-4 hover:opacity-70 transition-opacity"
+          >
+            info@sextacy.world
+          </a>
+        </p>
+      </div>
     </div>
   </main>
 );
