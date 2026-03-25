@@ -7,7 +7,7 @@ const Footer = () => {
         <p>© Sextacy — Turin, Italy</p>
         <div className="flex items-center gap-6">
           <a
-            href="https://www.instagram.com/sextacy.world/"
+            href="https://instagram.com/sextacy.rtm"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 hover:text-foreground transition-colors"
