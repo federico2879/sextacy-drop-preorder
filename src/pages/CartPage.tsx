@@ -24,8 +24,8 @@ const CartPage = () => {
     }
     const phone = (data.get("entry.1325497763") as string) || "";
     const digits = phone.replace(/\D/g, "");
-    if (digits.length < 10) {
-      newErrors.phone = "Please enter a valid phone number";
+    if (digits.length !== 10) {
+      newErrors.phone = "Phone number must be exactly 10 digits";
     }
     if (!privacyChecked) {
       newErrors.privacy = "You must agree to the privacy policy";

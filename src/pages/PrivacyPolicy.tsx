@@ -88,10 +88,10 @@ const PrivacyPolicy = () => (
         <p>
           For any privacy-related request, contact us at:{" "}
           <a
-            href="mailto:info@sextacy.world"
+            href="mailto:info.rtmagency@gmail.com"
             className="text-foreground underline underline-offset-4 hover:opacity-70 transition-opacity"
           >
-            info@sextacy.world
+            info.rtmagency@gmail.com
           </a>
         </p>
       </div>
