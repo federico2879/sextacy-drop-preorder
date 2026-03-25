@@ -34,7 +34,7 @@ const Hero = () => {
           onClick={scrollToCollection}
           className="border border-foreground px-10 py-4 text-xs tracking-[0.3em] uppercase text-foreground transition-colors duration-300 hover:bg-foreground hover:text-background"
         >
-          Shop Collection
+          View Collection
         </button>
       </div>
     </section>
