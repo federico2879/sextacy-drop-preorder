@@ -51,6 +51,7 @@ const PrivacyPolicy = () => (
         </h2>
         <p>
           Submitted form data may be processed and stored using third-party tools such as Google Forms and Google Sheets.
+          We also use Microsoft Clarity to understand how users interact with our website. Clarity may collect anonymized usage data such as clicks, scrolls, and session recordings.
         </p>
       </div>
 
