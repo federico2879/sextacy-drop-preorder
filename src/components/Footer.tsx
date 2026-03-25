@@ -18,7 +18,7 @@ const Footer = () => {
           </a>
           <span className="hidden sm:inline">·</span>
           <a
-            href="mailto:info@sextacy.world"
+            href="mailto:info.rtmagency@gmail.com"
             className="hover:text-foreground transition-colors"
           >
             Contact
