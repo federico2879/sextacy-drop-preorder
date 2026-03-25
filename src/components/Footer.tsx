@@ -1,4 +1,5 @@
 import { Instagram } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -22,6 +23,13 @@ const Footer = () => {
           >
             Contact
           </a>
+          <span className="hidden sm:inline">·</span>
+          <Link
+            to="/privacy"
+            className="hover:text-foreground transition-colors"
+          >
+            Privacy Policy
+          </Link>
         </div>
       </div>
     </footer>
