@@ -258,6 +258,36 @@ const CartPage = () => {
               {errors.phone && <p className="text-destructive text-xs tracking-wide mt-2">{errors.phone}</p>}
             </div>
 
+            <p className="text-xs tracking-wide text-muted-foreground leading-relaxed">
+              Please make sure your email and WhatsApp number are correct — we'll use them to confirm your preorder.
+            </p>
+
+            <div>
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={privacyChecked}
+                  onChange={() => {
+                    setPrivacyChecked(!privacyChecked);
+                    if (errors.privacy) setErrors((e) => ({ ...e, privacy: undefined }));
+                  }}
+                  className="mt-1 h-4 w-4 shrink-0 rounded-sm border border-border accent-foreground"
+                />
+                <span className="text-xs tracking-wide text-muted-foreground leading-relaxed">
+                  I agree to the processing of my personal data for order management purposes.{" "}
+                  <span className="text-destructive">*</span>
+                  <br />
+                  <Link
+                    to="/privacy"
+                    className="text-foreground underline underline-offset-4 hover:opacity-70 transition-opacity"
+                  >
+                    Privacy Policy
+                  </Link>
+                </span>
+              </label>
+              {errors.privacy && <p className="text-destructive text-xs tracking-wide mt-2">{errors.privacy}</p>}
+            </div>
+
             <button
               type="submit"
               className="mt-8 border border-foreground px-10 py-4 text-xs tracking-[0.3em] uppercase text-foreground transition-colors duration-300 hover:bg-foreground hover:text-background"
