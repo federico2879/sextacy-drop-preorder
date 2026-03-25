@@ -12,7 +12,8 @@ const getProductImage = (productId: string) => {
 const CartPage = () => {
   const { items, removeItem, clearCart, addItem } = useCart();
   const [submitted, setSubmitted] = useState(false);
-  const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
+  const [privacyChecked, setPrivacyChecked] = useState(false);
+  const [errors, setErrors] = useState<{ email?: string; phone?: string; privacy?: string }>({});
 
   const validate = (form: HTMLFormElement) => {
     const data = new FormData(form);
