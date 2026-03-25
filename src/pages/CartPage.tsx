@@ -77,6 +77,7 @@ const CartPage = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!validate(e.currentTarget)) return;
     const form = e.currentTarget;
     const data = new FormData(form);
 
