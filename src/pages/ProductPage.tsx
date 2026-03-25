@@ -202,9 +202,8 @@ const ProductPage = () => {
               Limited pieces available
             </p>
           </div>
-          <p className="text-sm leading-relaxed text-muted-foreground mb-12 max-w-md">
-            Heavyweight 240gsm cotton. Oversized boxy fit. Screen-printed front
-            graphic. Cut and sewn in Italy.
+          <p className="text-sm leading-relaxed text-muted-foreground mb-12 max-w-md whitespace-pre-line">
+            {PRODUCT_DESCRIPTIONS[product.id] ?? "Heavyweight 240gsm cotton. Oversized boxy fit. Screen-printed front\ngraphic. Cut and sewn in Italy."}
           </p>
 
           {/* Size selector */}
