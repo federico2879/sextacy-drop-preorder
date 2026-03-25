@@ -12,6 +12,23 @@ const getProductImage = (productId: string) => {
 const CartPage = () => {
   const { items, removeItem, clearCart, addItem } = useCart();
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
+
+  const validate = (form: HTMLFormElement) => {
+    const data = new FormData(form);
+    const newErrors: { email?: string; phone?: string } = {};
+    const email = (data.get("entry.774244041") as string) || "";
+    if (!email || !email.includes("@")) {
+      newErrors.email = "Please enter a valid email address";
+    }
+    const phone = (data.get("entry.1325497763") as string) || "";
+    const digits = phone.replace(/\D/g, "");
+    if (digits.length < 10) {
+      newErrors.phone = "Please enter a valid phone number";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   // Group items by productId + size for quantity display
   interface GroupedItem {
