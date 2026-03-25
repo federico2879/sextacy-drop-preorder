@@ -15,6 +15,16 @@ const SIZE_GUIDE = [
   { size: "XXL", it: "58/60", chest: "114–120", waist: "102–108", hip: "116–122" },
 ];
 
+const PRODUCT_DESCRIPTIONS: Record<number, string> = {
+  1: "Horizontal black and white.\nPure pattern.",
+  2: "A car in flames.\nNo control.",
+  3: "The S on your back.\nNothing else matters.",
+  4: "Red and white lines.\nTension.",
+  5: "Sweet, but not innocent.",
+  6: "Built from kisses.\nRespect the music.",
+  7: "Raw writing.\nNo rules.",
+};
+
 const SIZES = ["S", "M", "L", "XL"] as const;
 
 const ProductPage = () => {
@@ -202,9 +212,8 @@ const ProductPage = () => {
               Limited pieces available
             </p>
           </div>
-          <p className="text-sm leading-relaxed text-muted-foreground mb-12 max-w-md">
-            Heavyweight 240gsm cotton. Oversized boxy fit. Screen-printed front
-            graphic. Cut and sewn in Italy.
+          <p className="text-sm leading-relaxed text-muted-foreground mb-12 max-w-md whitespace-pre-line">
+            {PRODUCT_DESCRIPTIONS[product.id] ?? "Heavyweight 240gsm cotton. Oversized boxy fit. Screen-printed front\ngraphic. Cut and sewn in Italy."}
           </p>
 
           {/* Size selector */}
