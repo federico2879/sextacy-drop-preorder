@@ -12,11 +12,12 @@ const getProductImage = (productId: string) => {
 const CartPage = () => {
   const { items, removeItem, clearCart, addItem } = useCart();
   const [submitted, setSubmitted] = useState(false);
-  const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
+  const [privacyChecked, setPrivacyChecked] = useState(false);
+  const [errors, setErrors] = useState<{ email?: string; phone?: string; privacy?: string }>({});
 
   const validate = (form: HTMLFormElement) => {
     const data = new FormData(form);
-    const newErrors: { email?: string; phone?: string } = {};
+    const newErrors: { email?: string; phone?: string; privacy?: string } = {};
     const email = (data.get("entry.774244041") as string) || "";
     if (!email || !email.includes("@")) {
       newErrors.email = "Please enter a valid email address";
@@ -25,6 +26,9 @@ const CartPage = () => {
     const digits = phone.replace(/\D/g, "");
     if (digits.length < 10) {
       newErrors.phone = "Please enter a valid phone number";
+    }
+    if (!privacyChecked) {
+      newErrors.privacy = "You must agree to the privacy policy";
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -252,6 +256,36 @@ const CartPage = () => {
                 onChange={() => errors.phone && setErrors((e) => ({ ...e, phone: undefined }))}
               />
               {errors.phone && <p className="text-destructive text-xs tracking-wide mt-2">{errors.phone}</p>}
+            </div>
+
+            <p className="text-xs tracking-wide text-muted-foreground leading-relaxed">
+              Please make sure your email and WhatsApp number are correct — we'll use them to confirm your preorder.
+            </p>
+
+            <div>
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={privacyChecked}
+                  onChange={() => {
+                    setPrivacyChecked(!privacyChecked);
+                    if (errors.privacy) setErrors((e) => ({ ...e, privacy: undefined }));
+                  }}
+                  className="mt-1 h-4 w-4 shrink-0 rounded-sm border border-border accent-foreground"
+                />
+                <span className="text-xs tracking-wide text-muted-foreground leading-relaxed">
+                  I agree to the processing of my personal data for order management purposes.{" "}
+                  <span className="text-destructive">*</span>
+                  <br />
+                  <Link
+                    to="/privacy"
+                    className="text-foreground underline underline-offset-4 hover:opacity-70 transition-opacity"
+                  >
+                    Privacy Policy
+                  </Link>
+                </span>
+              </label>
+              {errors.privacy && <p className="text-destructive text-xs tracking-wide mt-2">{errors.privacy}</p>}
             </div>
 
             <button
