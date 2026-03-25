@@ -229,22 +229,30 @@ const CartPage = () => {
               maxLength={20}
               className="bg-transparent border-b border-border px-0 py-4 text-sm tracking-wide text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors"
             />
-            <input
-              name="entry.774244041"
-              type="email"
-              placeholder="Email"
-              required
-              maxLength={255}
-              className="bg-transparent border-b border-border px-0 py-4 text-sm tracking-wide text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors"
-            />
-            <input
-              name="entry.1325497763"
-              type="tel"
-              placeholder="Phone number"
-              required
-              maxLength={10}
-              className="bg-transparent border-b border-border px-0 py-4 text-sm tracking-wide text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors"
-            />
+            <div>
+              <input
+                name="entry.774244041"
+                type="email"
+                placeholder="Email"
+                required
+                maxLength={255}
+                className="bg-transparent border-b border-border px-0 py-4 text-sm tracking-wide text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors w-full"
+                onChange={() => errors.email && setErrors((e) => ({ ...e, email: undefined }))}
+              />
+              {errors.email && <p className="text-destructive text-xs tracking-wide mt-2">{errors.email}</p>}
+            </div>
+            <div>
+              <input
+                name="entry.1325497763"
+                type="tel"
+                placeholder="Phone number (WhatsApp)"
+                required
+                maxLength={20}
+                className="bg-transparent border-b border-border px-0 py-4 text-sm tracking-wide text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors w-full"
+                onChange={() => errors.phone && setErrors((e) => ({ ...e, phone: undefined }))}
+              />
+              {errors.phone && <p className="text-destructive text-xs tracking-wide mt-2">{errors.phone}</p>}
+            </div>
 
             <button
               type="submit"
