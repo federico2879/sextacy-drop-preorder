@@ -11,7 +11,7 @@ const PreorderForm = () => {
 
   const validate = (form: HTMLFormElement) => {
     const data = new FormData(form);
-    const newErrors: { email?: string; phone?: string } = {};
+    const newErrors: { email?: string; phone?: string; privacy?: string } = {};
     const email = (data.get("entry.774244041") as string) || "";
     if (!email || !email.includes("@")) {
       newErrors.email = "Please enter a valid email address";
@@ -20,6 +20,9 @@ const PreorderForm = () => {
     const digits = phone.replace(/\D/g, "");
     if (digits.length < 10) {
       newErrors.phone = "Please enter a valid phone number";
+    }
+    if (!privacyChecked) {
+      newErrors.privacy = "You must agree to the privacy policy";
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
