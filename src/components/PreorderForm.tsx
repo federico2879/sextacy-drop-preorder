@@ -6,7 +6,8 @@ const SIZES = ["S", "M", "L", "XL"] as const;
 const PreorderForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [selectedSize, setSelectedSize] = useState<string>("");
-  const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
+  const [privacyChecked, setPrivacyChecked] = useState(false);
+  const [errors, setErrors] = useState<{ email?: string; phone?: string; privacy?: string }>({});
 
   const validate = (form: HTMLFormElement) => {
     const data = new FormData(form);
