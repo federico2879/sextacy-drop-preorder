@@ -8,6 +8,7 @@ import CartIcon from "@/components/CartIcon";
 import Index from "./pages/Index";
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
