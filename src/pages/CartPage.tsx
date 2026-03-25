@@ -12,6 +12,23 @@ const getProductImage = (productId: string) => {
 const CartPage = () => {
   const { items, removeItem, clearCart, addItem } = useCart();
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
+
+  const validate = (form: HTMLFormElement) => {
+    const data = new FormData(form);
+    const newErrors: { email?: string; phone?: string } = {};
+    const email = (data.get("entry.774244041") as string) || "";
+    if (!email || !email.includes("@")) {
+      newErrors.email = "Please enter a valid email address";
+    }
+    const phone = (data.get("entry.1325497763") as string) || "";
+    const digits = phone.replace(/\D/g, "");
+    if (digits.length < 10) {
+      newErrors.phone = "Please enter a valid phone number";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   // Group items by productId + size for quantity display
   interface GroupedItem {
@@ -60,6 +77,7 @@ const CartPage = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!validate(e.currentTarget)) return;
     const form = e.currentTarget;
     const data = new FormData(form);
 
@@ -211,22 +229,30 @@ const CartPage = () => {
               maxLength={20}
               className="bg-transparent border-b border-border px-0 py-4 text-sm tracking-wide text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors"
             />
-            <input
-              name="entry.774244041"
-              type="email"
-              placeholder="Email"
-              required
-              maxLength={255}
-              className="bg-transparent border-b border-border px-0 py-4 text-sm tracking-wide text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors"
-            />
-            <input
-              name="entry.1325497763"
-              type="tel"
-              placeholder="Phone number"
-              required
-              maxLength={10}
-              className="bg-transparent border-b border-border px-0 py-4 text-sm tracking-wide text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors"
-            />
+            <div>
+              <input
+                name="entry.774244041"
+                type="email"
+                placeholder="Email"
+                required
+                maxLength={255}
+                className="bg-transparent border-b border-border px-0 py-4 text-sm tracking-wide text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors w-full"
+                onChange={() => errors.email && setErrors((e) => ({ ...e, email: undefined }))}
+              />
+              {errors.email && <p className="text-destructive text-xs tracking-wide mt-2">{errors.email}</p>}
+            </div>
+            <div>
+              <input
+                name="entry.1325497763"
+                type="tel"
+                placeholder="Phone number (WhatsApp)"
+                required
+                maxLength={20}
+                className="bg-transparent border-b border-border px-0 py-4 text-sm tracking-wide text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors w-full"
+                onChange={() => errors.phone && setErrors((e) => ({ ...e, phone: undefined }))}
+              />
+              {errors.phone && <p className="text-destructive text-xs tracking-wide mt-2">{errors.phone}</p>}
+            </div>
 
             <button
               type="submit"
