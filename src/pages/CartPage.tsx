@@ -181,7 +181,7 @@ const CartPage = () => {
                       {g.productName}
                     </p>
                     <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mt-1">
-                      Size {g.size} · €20
+                      Size {g.size}
                     </p>
                   </div>
                   {/* Quantity controls */}
