@@ -142,7 +142,7 @@ const CartPage = () => {
       </Link>
 
       <p className="text-xs tracking-[0.4em] uppercase text-muted-foreground mb-12 text-center">
-        Your Cart
+        Preorder Summary
       </p>
 
       {items.length === 0 ? (
