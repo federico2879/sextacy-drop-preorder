@@ -204,14 +204,9 @@ const ProductPage = () => {
           <h1 className="text-2xl md:text-3xl tracking-[0.15em] uppercase text-foreground mb-4 font-medium">
             {product.name}
           </h1>
-          <div className="mb-8">
-            <p className="text-lg tracking-wide text-foreground">
-              <span className="line-through opacity-60">€25</span>{" "}€20
-            </p>
-            <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mt-2">
-              Limited pieces available
-            </p>
-          </div>
+          <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-8">
+            Limited pieces available
+          </p>
           <p className="text-sm leading-relaxed text-muted-foreground mb-12 max-w-md whitespace-pre-line">
             {PRODUCT_DESCRIPTIONS[product.id] ?? "Heavyweight 240gsm cotton. Oversized boxy fit. Screen-printed front\ngraphic. Cut and sewn in Italy."}
           </p>
