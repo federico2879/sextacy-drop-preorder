@@ -56,10 +56,13 @@ const PreorderForm = () => {
     return (
       <section id="preorder" className="section-padding flex flex-col items-center justify-center min-h-[60vh] text-center">
         <p className="text-xs tracking-[0.4em] uppercase text-muted-foreground mb-6">
-          Confirmed
+          Request Received
         </p>
-        <p className="text-lg md:text-xl tracking-wide text-foreground max-w-md leading-relaxed">
-          Thank you. We will contact you on WhatsApp to complete the order.
+        <p className="text-lg md:text-xl tracking-wide text-foreground max-w-md leading-relaxed mb-4">
+          Your preorder request has been received.
+        </p>
+        <p className="text-sm tracking-wide text-muted-foreground max-w-md leading-relaxed">
+          We'll contact you soon with the next steps.
         </p>
       </section>
     );
