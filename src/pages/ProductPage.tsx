@@ -205,7 +205,7 @@ const ProductPage = () => {
             {product.name}
           </h1>
           <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-8">
-            Limited pieces available
+            Limited pieces available. Free preorder. Register now and secure yours.
           </p>
           <p className="text-sm leading-relaxed text-muted-foreground mb-12 max-w-md whitespace-pre-line">
             {PRODUCT_DESCRIPTIONS[product.id] ?? "Heavyweight 240gsm cotton. Oversized boxy fit. Screen-printed front\ngraphic. Cut and sewn in Italy."}
