@@ -26,7 +26,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     e.preventDefault();
     e.stopPropagation();
     addItem({ productId: String(product.id), productName: product.name, size });
-    toast({ title: `${product.name} (${size}) added to cart` });
+    toast({ title: `${product.name} (${size}) added to preorder` });
     setShowSizes(false);
   };
 
