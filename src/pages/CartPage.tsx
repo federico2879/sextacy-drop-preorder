@@ -147,14 +147,17 @@ const CartPage = () => {
 
       {items.length === 0 ? (
         <div className="text-center py-20">
-          <p className="text-muted-foreground text-sm tracking-wide mb-8">
-            Your cart is empty.
+          <p className="text-muted-foreground text-sm tracking-wide mb-2">
+            Your preorder is empty.
+          </p>
+          <p className="text-muted-foreground text-xs tracking-wide mb-8">
+            Explore the collection and select your pieces.
           </p>
           <Link
             to="/"
             className="border border-foreground px-10 py-4 text-xs tracking-[0.3em] uppercase text-foreground transition-colors duration-300 hover:bg-foreground hover:text-background"
           >
-            Shop Collection
+            View Collection
           </Link>
         </div>
       ) : (
