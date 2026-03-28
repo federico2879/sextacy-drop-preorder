@@ -26,7 +26,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     e.preventDefault();
     e.stopPropagation();
     addItem({ productId: String(product.id), productName: product.name, size });
-    toast({ title: `${product.name} (${size}) added to cart` });
+    toast({ title: `${product.name} (${size}) added to preorder` });
     setShowSizes(false);
   };
 
@@ -58,14 +58,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
             {product.name}
           </p>
           <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mt-2">
-            <span className="line-through opacity-60">€25</span>{" "}€20 — Limited preorder
+            Limited pieces available
           </p>
         </Link>
 
         <button
           onClick={handleAddToCart}
           className="flex-shrink-0 w-10 h-10 border border-border rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
-          aria-label="Add to cart"
+          aria-label="Add to preorder"
         >
           <ShoppingBag className="w-4 h-4" />
         </button>

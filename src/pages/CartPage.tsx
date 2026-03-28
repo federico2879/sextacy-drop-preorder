@@ -113,10 +113,13 @@ const CartPage = () => {
     return (
       <main className="min-h-screen flex flex-col items-center justify-center section-padding text-center">
         <p className="text-xs tracking-[0.4em] uppercase text-muted-foreground mb-6">
-          Confirmed
+          Request Received
         </p>
-        <p className="text-lg md:text-xl tracking-wide text-foreground max-w-md leading-relaxed mb-12">
-          Thank you. We will contact you on WhatsApp to complete the order.
+        <p className="text-lg md:text-xl tracking-wide text-foreground max-w-md leading-relaxed mb-4">
+          Your preorder request has been received.
+        </p>
+        <p className="text-sm tracking-wide text-muted-foreground max-w-md leading-relaxed mb-12">
+          We'll contact you soon with the next steps.
         </p>
         <Link
           to="/"
@@ -139,7 +142,7 @@ const CartPage = () => {
       </Link>
 
       <p className="text-xs tracking-[0.4em] uppercase text-muted-foreground mb-12 text-center">
-        Your Cart
+        Preorder Summary
       </p>
 
       {items.length === 0 ? (
@@ -178,7 +181,7 @@ const CartPage = () => {
                       {g.productName}
                     </p>
                     <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mt-1">
-                      Size {g.size} · €20
+                      Size {g.size}
                     </p>
                   </div>
                   {/* Quantity controls */}
@@ -288,11 +291,15 @@ const CartPage = () => {
               {errors.privacy && <p className="text-destructive text-xs tracking-wide mt-2">{errors.privacy}</p>}
             </div>
 
+            <p className="text-xs tracking-wide text-muted-foreground leading-relaxed mt-2">
+              Submitting this form does not complete a purchase. It only registers your interest in the selected items.
+            </p>
+
             <button
               type="submit"
               className="mt-8 border border-foreground px-10 py-4 text-xs tracking-[0.3em] uppercase text-foreground transition-colors duration-300 hover:bg-foreground hover:text-background"
             >
-              Submit Preorder ({items.length} {items.length === 1 ? "item" : "items"})
+              Submit Preorder Request ({items.length} {items.length === 1 ? "item" : "items"})
             </button>
           </form>
         </>
