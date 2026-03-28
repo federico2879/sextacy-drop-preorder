@@ -101,7 +101,7 @@ const ProductPage = () => {
       productName: product.name,
       size: selectedSize,
     });
-    toast({ title: `${product.name} (${selectedSize}) added to cart` });
+    toast({ title: `${product.name} (${selectedSize}) added to preorder` });
     setSelectedSize("");
     setAddedAnimation(true);
     setTimeout(() => setAddedAnimation(false), 400);
