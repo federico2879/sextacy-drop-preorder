@@ -58,7 +58,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             {product.name}
           </p>
           <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mt-2">
-            Limited pieces available. Free preorder. Register now and secure yours.
+            Limited pieces available. Free preorder.
           </p>
         </Link>
 
