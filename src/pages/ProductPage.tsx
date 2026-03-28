@@ -247,10 +247,10 @@ const ProductPage = () => {
               addedAnimation ? "scale-95 bg-foreground text-background" : ""
             }`}
           >
-            Add to Cart
+            Add to Preorder
           </button>
           <p className="text-[11px] tracking-[0.15em] text-muted-foreground mt-4 max-w-xs">
-            Preorder — we'll contact you on WhatsApp to confirm your order
+            Free preorder registration. We'll contact you after submission.
           </p>
         </div>
       </div>

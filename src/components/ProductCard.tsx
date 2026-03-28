@@ -65,7 +65,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <button
           onClick={handleAddToCart}
           className="flex-shrink-0 w-10 h-10 border border-border rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
-          aria-label="Add to cart"
+          aria-label="Add to preorder"
         >
           <ShoppingBag className="w-4 h-4" />
         </button>

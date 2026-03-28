@@ -21,6 +21,9 @@ const Hero = () => {
         <p className="text-sm md:text-base tracking-[0.2em] uppercase text-muted-foreground max-w-md">
           Respect the music
         </p>
+        <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/70 mt-3">
+          Preorder registration only — no payment required
+        </p>
       </div>
 
       {/* Middle: Scrolling Photos */}

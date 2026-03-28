@@ -291,11 +291,15 @@ const CartPage = () => {
               {errors.privacy && <p className="text-destructive text-xs tracking-wide mt-2">{errors.privacy}</p>}
             </div>
 
+            <p className="text-xs tracking-wide text-muted-foreground leading-relaxed mt-2">
+              Submitting this form does not complete a purchase. It only registers your interest in the selected items.
+            </p>
+
             <button
               type="submit"
               className="mt-8 border border-foreground px-10 py-4 text-xs tracking-[0.3em] uppercase text-foreground transition-colors duration-300 hover:bg-foreground hover:text-background"
             >
-              Submit Preorder ({items.length} {items.length === 1 ? "item" : "items"})
+              Submit Preorder Request ({items.length} {items.length === 1 ? "item" : "items"})
             </button>
           </form>
         </>
