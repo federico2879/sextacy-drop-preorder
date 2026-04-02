@@ -42,55 +42,70 @@ const Landing = () => {
       ref={ref}
       className="min-h-screen bg-black text-white overflow-x-hidden selection:bg-white/20"
     >
-      {/* ─── HERO COLLAGE ─── */}
-      <section className="relative min-h-screen flex items-center justify-center px-4">
-        {/* Floating image — top left */}
+      {/* ─── HERO ─── */}
+      <section className="relative h-screen">
+        {/* Image — bleeds from left, overlapped BY title */}
         <img
           src={eventsImg}
           alt=""
-          className="absolute top-[8%] left-[4%] w-[28vw] md:w-[18vw] h-[35vh] md:h-[40vh] object-cover -rotate-3 opacity-70"
+          className="absolute top-[10%] -left-[5%] w-[55vw] md:w-[38vw] h-[70vh] object-cover -rotate-2 opacity-60"
         />
-        {/* Floating image — right */}
+        {/* Image — top right, smaller, higher */}
         <img
           src={communityImg}
           alt=""
-          className="absolute top-[15%] right-[6%] w-[22vw] md:w-[14vw] h-[28vh] md:h-[32vh] object-cover rotate-2 opacity-60"
+          className="absolute top-[5%] right-[3%] w-[28vw] md:w-[18vw] h-[35vh] object-cover rotate-3 opacity-50"
         />
-        {/* Floating image — bottom center-left */}
+        {/* Image — bottom right, overlaps with title */}
         <img
           src={merchImg}
           alt=""
-          className="absolute bottom-[10%] left-[15%] w-[30vw] md:w-[16vw] h-[22vh] md:h-[26vh] object-cover rotate-1 opacity-50"
+          className="absolute bottom-[8%] right-[10%] w-[35vw] md:w-[22vw] h-[40vh] object-cover -rotate-1 opacity-40 z-[5]"
         />
 
-        {/* Main title */}
-        <div data-a className="opacity-0 translate-y-6 transition-all duration-1000 ease-out relative z-10 text-center">
-          <h1 className="brand-title text-[15vw] md:text-[12vw] lg:text-[10vw] leading-[0.85] tracking-[0.2em] text-white mix-blend-difference">
-            SEXTACY
-          </h1>
-          <p className="mt-4 text-white/40 text-[10px] md:text-xs tracking-[0.35em] uppercase">
-            Respect the music.
-          </p>
+        {/* TITLE — massive, overlaps images */}
+        <div className="absolute inset-0 flex items-center justify-center z-[3]">
+          <div data-a className="opacity-0 translate-y-6 transition-all duration-1000 ease-out">
+            <h1
+              className="brand-title text-[22vw] md:text-[16vw] leading-[0.8] tracking-[0.18em] text-white mix-blend-difference text-center"
+              style={{ marginLeft: "-3vw" }}
+            >
+              SEXTACY
+            </h1>
+          </div>
         </div>
 
-        {/* Decorative crosses */}
-        <Cross className="absolute top-[20%] left-[42%]" />
-        <Cross className="absolute bottom-[25%] right-[30%]" />
+        {/* Small caption — off-center right */}
+        <p
+          data-a
+          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute bottom-[18%] left-[58%] md:left-[62%] text-white/30 text-[9px] md:text-[11px] tracking-[0.4em] uppercase z-[6]"
+        >
+          Respect the music.
+        </p>
 
-        {/* Thin vertical line */}
-        <div className="absolute left-1/2 bottom-0 w-px h-16 bg-gradient-to-b from-transparent to-white/10" />
+        <Cross className="absolute top-[22%] left-[48%] z-[8]" />
+        <Cross className="absolute bottom-[30%] right-[25%] z-[8]" />
+
+        {/* Bleed line */}
+        <div className="absolute left-[42%] bottom-0 w-px h-28 bg-gradient-to-b from-transparent to-white/8" />
       </section>
 
       {/* ─── EDITORIAL COMPOSITION ─── */}
-      <div className="relative px-4 md:px-0" style={{ minHeight: "300vh" }}>
+      <div className="relative" style={{ height: "380vh" }}>
 
-        {/* ── Events block — top right ── */}
+        {/* ── EVENTS — text overlaps image ── */}
+        <img
+          src={playlistImg}
+          alt=""
+          data-a
+          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[2%] left-[-3%] w-[60vw] md:w-[42vw] h-[60vh] object-cover -rotate-1"
+        />
         <div
           data-a
-          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[4%] right-[8%] md:right-[12%] text-right z-10"
+          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[6%] left-[30%] md:left-[28%] z-10"
         >
-          <p className="text-white/30 text-[9px] md:text-[10px] tracking-[0.35em] uppercase mb-2">Next Event</p>
-          <h2 className="brand-title text-2xl md:text-5xl lg:text-6xl tracking-[0.15em]">
+          <p className="text-white/25 text-[8px] md:text-[10px] tracking-[0.4em] uppercase mb-1">Next Event</p>
+          <h2 className="brand-title text-[8vw] md:text-[5.5vw] tracking-[0.12em] leading-[0.85]">
             Thursday<br />— Torino
           </h2>
           <div className="mt-4">
@@ -98,114 +113,135 @@ const Landing = () => {
           </div>
         </div>
 
-        {/* Image — large, left side */}
-        <img
-          src={playlistImg}
-          alt=""
-          data-a
-          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[2%] left-[4%] md:left-[8%] w-[45vw] md:w-[30vw] h-[50vh] md:h-[55vh] object-cover -rotate-1"
-        />
-
-        {/* Thin horizontal line */}
-        <div className="absolute top-[28%] left-[10%] w-[25vw] h-px bg-white/8" />
-        <Cross className="absolute top-[28%] left-[36%]" />
-
-        {/* Editorial phrase — floating */}
+        {/* Rotated editorial phrase — overlaps event image */}
         <p
           data-a
-          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[32%] left-[6%] md:left-[10%] text-white/20 text-[10px] md:text-xs tracking-[0.4em] uppercase -rotate-90 origin-bottom-left"
+          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[14%] right-[8%] text-white/12 text-[10px] tracking-[0.5em] uppercase -rotate-90 origin-bottom-right whitespace-nowrap"
         >
           The night is not for everyone.
         </p>
 
-        {/* ── Community block — center left ── */}
+        {/* thin line */}
+        <div className="absolute top-[20%] left-[15%] w-[35vw] h-px bg-white/6" />
+        <Cross className="absolute top-[20%] left-[51%]" />
+
+        {/* ── COMMUNITY — image overlaps text ── */}
         <div
           data-a
-          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[35%] left-[8%] md:left-[15%] z-10"
+          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[24%] right-[5%] md:right-[12%] text-right z-[2]"
         >
-          <h2 className="brand-title text-3xl md:text-6xl tracking-[0.2em]">Community</h2>
+          <h2 className="brand-title text-[10vw] md:text-[7vw] tracking-[0.2em] leading-[0.85]">
+            Comm<br className="md:hidden" />unity
+          </h2>
           <div className="mt-3">
             <CTA>Join WhatsApp</CTA>
           </div>
         </div>
-
-        {/* Image — medium, right offset */}
+        {/* Image ON TOP of community text, partially covering */}
         <img
           src={labelImg}
           alt=""
           data-a
-          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[30%] right-[4%] md:right-[10%] w-[35vw] md:w-[22vw] h-[35vh] md:h-[40vh] object-cover rotate-2"
+          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[22%] right-[18%] md:right-[22%] w-[40vw] md:w-[28vw] h-[45vh] object-cover rotate-2 opacity-70 z-[3]"
+        />
+        {/* Small image floating left, tension */}
+        <img
+          src={eventsImg}
+          alt=""
+          className="absolute top-[28%] left-[3%] w-[20vw] md:w-[12vw] h-[18vh] object-cover -rotate-3 opacity-30"
         />
 
-        {/* ── Merch block — right side ── */}
+        {/* ── MERCH — dense cluster ── */}
+        <img
+          src={merchImg}
+          alt=""
+          data-a
+          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[42%] left-[8%] md:left-[15%] w-[50vw] md:w-[32vw] h-[55vh] object-cover rotate-1 z-[2]"
+        />
         <div
           data-a
-          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[52%] right-[10%] md:right-[18%] text-right z-10"
+          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[46%] left-[35%] md:left-[32%] z-[5]"
         >
-          <h2 className="brand-title text-3xl md:text-5xl tracking-[0.2em]">Drop // 01</h2>
+          <h2 className="brand-title text-[9vw] md:text-[6vw] tracking-[0.15em] text-white mix-blend-difference">
+            Drop // 01
+          </h2>
           <div className="mt-3">
             <CTA>View collection</CTA>
           </div>
         </div>
 
-        {/* Image — small, center */}
+        {/* Vertical line */}
+        <div className="absolute top-[52%] right-[20%] w-px h-32 bg-white/5" />
+        <Cross className="absolute top-[55%] right-[35%]" />
+
+        {/* Small floating image — right side, merch area */}
         <img
-          src={eventsImg}
+          src={communityImg}
           alt=""
-          data-a
-          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[50%] left-[20%] md:left-[30%] w-[25vw] md:w-[15vw] h-[25vh] md:h-[30vh] object-cover -rotate-2 opacity-60"
+          className="absolute top-[50%] right-[4%] w-[18vw] md:w-[11vw] h-[20vh] object-cover -rotate-2 opacity-35 z-[1]"
         />
 
-        {/* Decorative elements */}
-        <div className="absolute top-[58%] left-[12%] w-px h-24 bg-white/6" />
-        <Cross className="absolute top-[62%] left-[50%]" />
-
-        {/* ── Playlist block — left side ── */}
+        {/* ── PLAYLIST — text massive, image underneath ── */}
         <div
           data-a
-          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[68%] left-[6%] md:left-[12%] z-10"
+          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[66%] right-[3%] md:right-[8%] text-right z-[4]"
         >
-          <h2 className="brand-title text-3xl md:text-5xl tracking-[0.2em]">Playlist</h2>
-          <p className="mt-2 text-white/30 text-[10px] md:text-xs tracking-[0.2em]">Listen to the sound.</p>
+          <h2 className="brand-title text-[12vw] md:text-[8vw] tracking-[0.2em] leading-[0.8] text-white mix-blend-difference">
+            Playlist
+          </h2>
+          <p className="mt-2 text-white/20 text-[9px] md:text-[11px] tracking-[0.3em] uppercase">
+            Listen to the sound.
+          </p>
           <div className="mt-3">
             <CTA>Open Spotify</CTA>
           </div>
         </div>
-
-        {/* Image — right, large */}
-        <img
-          src={communityImg}
-          alt=""
-          data-a
-          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[65%] right-[6%] md:right-[8%] w-[40vw] md:w-[25vw] h-[40vh] md:h-[45vh] object-cover rotate-1 opacity-70"
-        />
-
-        {/* Thin line */}
-        <div className="absolute top-[78%] right-[15%] w-[20vw] h-px bg-white/8" />
-
-        {/* ── Label block — center bottom ── */}
-        <div
-          data-a
-          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[85%] left-1/2 -translate-x-1/2 text-center z-10"
-        >
-          <h2 className="brand-title text-4xl md:text-7xl tracking-[0.2em]">Sextacy Records</h2>
-          <p className="mt-3 text-white/25 text-[10px] md:text-xs tracking-[0.3em] uppercase">
-            Explore the label.
-          </p>
-        </div>
-
-        {/* Small floating image near label */}
+        {/* Image under playlist text */}
         <img
           src={playlistImg}
           alt=""
-          className="absolute top-[88%] left-[8%] w-[18vw] md:w-[10vw] h-[15vh] md:h-[18vh] object-cover -rotate-3 opacity-40"
+          data-a
+          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[64%] right-[15%] md:right-[18%] w-[45vw] md:w-[30vw] h-[50vh] object-cover -rotate-1 opacity-60 z-[1]"
+        />
+        {/* Counterweight image — left, small */}
+        <img
+          src={labelImg}
+          alt=""
+          className="absolute top-[70%] left-[2%] w-[22vw] md:w-[13vw] h-[22vh] object-cover rotate-3 opacity-25"
         />
 
-        <Cross className="absolute top-[92%] right-[20%]" />
+        <div className="absolute top-[78%] left-[10%] w-[30vw] h-px bg-white/5" />
+
+        {/* ── LABEL — final, centered but off ── */}
+        <div
+          data-a
+          className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[85%] left-[8%] md:left-[15%] z-[6]"
+        >
+          <h2 className="brand-title text-[11vw] md:text-[8vw] tracking-[0.18em] leading-[0.85]">
+            Sextacy<br />Records
+          </h2>
+          <p className="mt-3 text-white/18 text-[9px] md:text-[10px] tracking-[0.35em] uppercase">
+            Explore the label.
+          </p>
+        </div>
+        {/* Image overlapping label text from right */}
+        <img
+          src={eventsImg}
+          alt=""
+          className="absolute top-[84%] right-[5%] md:right-[12%] w-[38vw] md:w-[25vw] h-[35vh] object-cover -rotate-2 opacity-45 z-[4]"
+        />
+        <img
+          src={communityImg}
+          alt=""
+          className="absolute top-[90%] left-[45%] w-[15vw] md:w-[9vw] h-[14vh] object-cover rotate-1 opacity-20 z-[2]"
+        />
+
+        <Cross className="absolute top-[92%] right-[30%]" />
+        <Cross className="absolute top-[88%] left-[40%]" />
       </div>
 
-      {/* Bottom breathing space */}
-      <div className="h-[20vh]" />
+      {/* Bottom breathing */}
+      <div className="h-[15vh]" />
     </div>
   );
 };
