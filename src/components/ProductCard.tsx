@@ -1,35 +1,13 @@
 import { useState } from "react";
-import { ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 import { type Product } from "@/data/products";
-import { useCart } from "@/context/CartContext";
-import { toast } from "@/hooks/use-toast";
-
-const SIZES = ["S", "M", "L", "XL"] as const;
 
 interface ProductCardProps {
   product: Product;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const [showSizes, setShowSizes] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const { addItem } = useCart();
-
-  const handleAddToCart = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setShowSizes(true);
-  };
-
-  const handleSizeSelect = (size: string, e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    addItem({ productId: String(product.id), productName: product.name, size });
-    toast({ title: `${product.name} (${size}) added to preorder` });
-    setShowSizes(false);
-  };
-
   const productUrl = `/product/${product.id}`;
 
   return (
@@ -52,38 +30,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
       </Link>
 
-      <div className="flex items-start justify-between gap-3">
-        <Link to={productUrl} className="min-w-0">
-          <p className="text-sm tracking-[0.15em] uppercase text-foreground">
-            {product.name}
-          </p>
-          <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mt-2">
-            Limited pieces available. Free preorder.
-          </p>
-        </Link>
-
-        <button
-          onClick={handleAddToCart}
-          className="flex-shrink-0 w-10 h-10 border border-border rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
-          aria-label="Add to preorder"
-        >
-          <ShoppingBag className="w-4 h-4" />
-        </button>
-      </div>
-
-      {showSizes && (
-        <div className="mt-3 flex gap-2 animate-in fade-in slide-in-from-top-2 duration-200">
-          {SIZES.map((size) => (
-            <button
-              key={size}
-              onClick={(e) => handleSizeSelect(size, e)}
-              className="flex-1 h-10 border border-border text-xs tracking-widest text-muted-foreground hover:border-foreground hover:text-foreground transition-colors"
-            >
-              {size}
-            </button>
-          ))}
-        </div>
-      )}
+      <Link to={productUrl} className="block">
+        <p className="text-sm tracking-[0.15em] uppercase text-foreground">
+          {product.name}
+        </p>
+        <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground/60 mt-2">
+          Drop // 01
+        </p>
+      </Link>
     </div>
   );
 };
