@@ -162,7 +162,7 @@ const Landing = () => {
 
         {/* ── MERCH — dense cluster ── */}
         <img
-          src={merchImg}
+          src={merch2}
           alt=""
           data-a
           className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[42%] left-[8%] md:left-[15%] w-[50vw] md:w-[32vw] h-[55vh] object-cover rotate-1 z-[2]"
