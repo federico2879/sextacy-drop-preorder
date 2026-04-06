@@ -148,7 +148,7 @@ const Landing = () => {
         </div>
         {/* Image ON TOP of community text, partially covering */}
         <img
-          src={labelImg}
+          src={community2}
           alt=""
           data-a
           className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[22%] right-[18%] md:right-[22%] w-[40vw] md:w-[28vw] h-[45vh] object-cover rotate-2 opacity-70 z-[3]"
