@@ -240,7 +240,7 @@ const Landing = () => {
           className="absolute top-[84%] right-[5%] md:right-[12%] w-[38vw] md:w-[25vw] h-[35vh] object-cover -rotate-2 opacity-45 z-[4]"
         />
         <img
-          src={communityImg}
+          src={community3}
           alt=""
           className="absolute top-[90%] left-[45%] w-[15vw] md:w-[9vw] h-[14vh] object-cover rotate-1 opacity-20 z-[2]"
         />
