@@ -114,7 +114,7 @@ const Landing = () => {
           className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[6%] left-[30%] md:left-[28%] z-10"
         >
           <p className="text-white/25 text-[8px] md:text-[10px] tracking-[0.4em] uppercase mb-1">Next Event</p>
-          <h2 className="brand-title text-[8vw] md:text-[5.5vw] tracking-[0.12em] leading-[0.85]">
+          <h2 className="font-light uppercase text-[8vw] md:text-[5.5vw] tracking-[0.12em] leading-[0.85]">
             Thursday<br />— Torino
           </h2>
           <div className="mt-4">
@@ -139,7 +139,7 @@ const Landing = () => {
           data-a
           className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[24%] right-[5%] md:right-[12%] text-right z-[2]"
         >
-          <h2 className="brand-title text-[10vw] md:text-[7vw] tracking-[0.2em] leading-[0.85]">
+          <h2 className="font-light uppercase text-[10vw] md:text-[7vw] tracking-[0.2em] leading-[0.85]">
             Comm<br className="md:hidden" />unity
           </h2>
           <div className="mt-3">
@@ -171,7 +171,7 @@ const Landing = () => {
           data-a
           className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[46%] left-[35%] md:left-[32%] z-[5]"
         >
-          <h2 className="brand-title text-[9vw] md:text-[6vw] tracking-[0.15em] text-white mix-blend-difference">
+          <h2 className="font-light uppercase text-[9vw] md:text-[6vw] tracking-[0.15em] text-white mix-blend-difference">
             Drop // 01
           </h2>
           <div className="mt-3">
@@ -195,7 +195,7 @@ const Landing = () => {
           data-a
           className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[66%] right-[3%] md:right-[8%] text-right z-[4]"
         >
-          <h2 className="brand-title text-[12vw] md:text-[8vw] tracking-[0.2em] leading-[0.8] text-white mix-blend-difference">
+          <h2 className="font-light uppercase text-[12vw] md:text-[8vw] tracking-[0.2em] leading-[0.8] text-white mix-blend-difference">
             Playlist
           </h2>
           <p className="mt-2 text-white/20 text-[9px] md:text-[11px] tracking-[0.3em] uppercase">
@@ -226,7 +226,7 @@ const Landing = () => {
           data-a
           className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[85%] left-[8%] md:left-[15%] z-[6]"
         >
-          <h2 className="brand-title text-[11vw] md:text-[8vw] tracking-[0.18em] leading-[0.85]">
+          <h2 className="font-light uppercase text-[11vw] md:text-[8vw] tracking-[0.18em] leading-[0.85]">
             Sextacy<br />Records
           </h2>
           <p className="mt-3 text-white/18 text-[9px] md:text-[10px] tracking-[0.35em] uppercase">
