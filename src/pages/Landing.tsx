@@ -207,7 +207,7 @@ const Landing = () => {
         </div>
         {/* Image under playlist text */}
         <img
-          src={playlistImg}
+          src={playlist1}
           alt=""
           data-a
           className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[64%] right-[15%] md:right-[18%] w-[45vw] md:w-[30vw] h-[50vh] object-cover -rotate-1 opacity-60 z-[1]"
