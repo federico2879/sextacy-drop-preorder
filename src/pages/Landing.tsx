@@ -185,7 +185,7 @@ const Landing = () => {
 
         {/* Small floating image — right side, merch area */}
         <img
-          src={communityImg}
+          src={merch3}
           alt=""
           className="absolute top-[50%] right-[4%] w-[18vw] md:w-[11vw] h-[20vh] object-cover -rotate-2 opacity-35 z-[1]"
         />
