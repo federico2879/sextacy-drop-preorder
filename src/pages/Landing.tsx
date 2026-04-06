@@ -5,13 +5,13 @@ import events3 from "@/assets/landing/events3.jpg";
 import community1 from "@/assets/landing/community1.jpg";
 import community2 from "@/assets/landing/community2.jpg";
 import community3 from "@/assets/landing/community3.jpg";
-import community4 from "@/assets/landing/community4.jpg";
 import merch1 from "@/assets/landing/merch1.jpg";
 import merch2 from "@/assets/landing/merch2.jpg";
 import merch3 from "@/assets/landing/merch3.jpg";
-import merch4 from "@/assets/landing/merch4.jpg";
 import playlist1 from "@/assets/landing/playlist1.jpg";
 import label1 from "@/assets/landing/label1.png";
+import label2 from "@/assets/landing/label2.jpg";
+import logo from "@/assets/sextacy-logo.png";
 import label2 from "@/assets/landing/label2.jpg";
 
 const CTA = ({ children, href = "#" }: { children: React.ReactNode; href?: string }) => (
