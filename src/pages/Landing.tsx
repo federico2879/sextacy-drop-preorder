@@ -104,7 +104,7 @@ const Landing = () => {
 
         {/* ── EVENTS — text overlaps image ── */}
         <img
-          src={playlistImg}
+          src={events2}
           alt=""
           data-a
           className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[2%] left-[-3%] w-[60vw] md:w-[42vw] h-[60vh] object-cover -rotate-1"
