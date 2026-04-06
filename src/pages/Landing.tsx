@@ -75,12 +75,12 @@ const Landing = () => {
         {/* TITLE — massive, overlaps images */}
         <div className="absolute inset-0 flex items-center justify-center z-[3]">
           <div data-a className="opacity-0 translate-y-6 transition-all duration-1000 ease-out">
-            <h1
-              className="brand-title text-[22vw] md:text-[16vw] leading-[0.8] tracking-[0.18em] text-white mix-blend-difference text-center"
+            <img
+              src={logo}
+              alt="SEXTACY"
+              className="w-[70vw] md:w-[50vw] mix-blend-difference invert"
               style={{ marginLeft: "-3vw" }}
-            >
-              SEXTACY
-            </h1>
+            />
           </div>
         </div>
 
