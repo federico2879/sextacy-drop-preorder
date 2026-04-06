@@ -1,9 +1,18 @@
 import { useEffect, useRef } from "react";
-import eventsImg from "@/assets/landing/events.jpg";
-import communityImg from "@/assets/landing/community.jpg";
-import merchImg from "@/assets/landing/merch.jpg";
-import playlistImg from "@/assets/landing/playlist.jpg";
-import labelImg from "@/assets/landing/label.jpg";
+import events1 from "@/assets/landing/events1.jpg";
+import events2 from "@/assets/landing/events2.jpg";
+import events3 from "@/assets/landing/events3.jpg";
+import community1 from "@/assets/landing/community1.jpg";
+import community2 from "@/assets/landing/community2.jpg";
+import community3 from "@/assets/landing/community3.jpg";
+import community4 from "@/assets/landing/community4.jpg";
+import merch1 from "@/assets/landing/merch1.jpg";
+import merch2 from "@/assets/landing/merch2.jpg";
+import merch3 from "@/assets/landing/merch3.jpg";
+import merch4 from "@/assets/landing/merch4.jpg";
+import playlist1 from "@/assets/landing/playlist1.jpg";
+import label1 from "@/assets/landing/label1.png";
+import label2 from "@/assets/landing/label2.jpg";
 
 const CTA = ({ children, href = "#" }: { children: React.ReactNode; href?: string }) => (
   <a
@@ -46,19 +55,19 @@ const Landing = () => {
       <section className="relative h-screen">
         {/* Image — bleeds from left, overlapped BY title */}
         <img
-          src={eventsImg}
+          src={events1}
           alt=""
           className="absolute top-[10%] -left-[5%] w-[55vw] md:w-[38vw] h-[70vh] object-cover -rotate-2 opacity-60"
         />
         {/* Image — top right, smaller, higher */}
         <img
-          src={communityImg}
+          src={community1}
           alt=""
           className="absolute top-[5%] right-[3%] w-[28vw] md:w-[18vw] h-[35vh] object-cover rotate-3 opacity-50"
         />
         {/* Image — bottom right, overlaps with title */}
         <img
-          src={merchImg}
+          src={merch1}
           alt=""
           className="absolute bottom-[8%] right-[10%] w-[35vw] md:w-[22vw] h-[40vh] object-cover -rotate-1 opacity-40 z-[5]"
         />
@@ -95,7 +104,7 @@ const Landing = () => {
 
         {/* ── EVENTS — text overlaps image ── */}
         <img
-          src={playlistImg}
+          src={events2}
           alt=""
           data-a
           className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[2%] left-[-3%] w-[60vw] md:w-[42vw] h-[60vh] object-cover -rotate-1"
@@ -139,21 +148,21 @@ const Landing = () => {
         </div>
         {/* Image ON TOP of community text, partially covering */}
         <img
-          src={labelImg}
+          src={community2}
           alt=""
           data-a
           className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[22%] right-[18%] md:right-[22%] w-[40vw] md:w-[28vw] h-[45vh] object-cover rotate-2 opacity-70 z-[3]"
         />
         {/* Small image floating left, tension */}
         <img
-          src={eventsImg}
+          src={events3}
           alt=""
           className="absolute top-[28%] left-[3%] w-[20vw] md:w-[12vw] h-[18vh] object-cover -rotate-3 opacity-30"
         />
 
         {/* ── MERCH — dense cluster ── */}
         <img
-          src={merchImg}
+          src={merch2}
           alt=""
           data-a
           className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[42%] left-[8%] md:left-[15%] w-[50vw] md:w-[32vw] h-[55vh] object-cover rotate-1 z-[2]"
@@ -176,7 +185,7 @@ const Landing = () => {
 
         {/* Small floating image — right side, merch area */}
         <img
-          src={communityImg}
+          src={merch3}
           alt=""
           className="absolute top-[50%] right-[4%] w-[18vw] md:w-[11vw] h-[20vh] object-cover -rotate-2 opacity-35 z-[1]"
         />
@@ -198,14 +207,14 @@ const Landing = () => {
         </div>
         {/* Image under playlist text */}
         <img
-          src={playlistImg}
+          src={playlist1}
           alt=""
           data-a
           className="opacity-0 translate-y-6 transition-all duration-1000 ease-out absolute top-[64%] right-[15%] md:right-[18%] w-[45vw] md:w-[30vw] h-[50vh] object-cover -rotate-1 opacity-60 z-[1]"
         />
         {/* Counterweight image — left, small */}
         <img
-          src={labelImg}
+          src={label1}
           alt=""
           className="absolute top-[70%] left-[2%] w-[22vw] md:w-[13vw] h-[22vh] object-cover rotate-3 opacity-25"
         />
@@ -226,12 +235,12 @@ const Landing = () => {
         </div>
         {/* Image overlapping label text from right */}
         <img
-          src={eventsImg}
+          src={label2}
           alt=""
           className="absolute top-[84%] right-[5%] md:right-[12%] w-[38vw] md:w-[25vw] h-[35vh] object-cover -rotate-2 opacity-45 z-[4]"
         />
         <img
-          src={communityImg}
+          src={community3}
           alt=""
           className="absolute top-[90%] left-[45%] w-[15vw] md:w-[9vw] h-[14vh] object-cover rotate-1 opacity-20 z-[2]"
         />
