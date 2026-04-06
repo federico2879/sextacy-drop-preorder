@@ -49,6 +49,7 @@ const Landing = () => {
     <div
       ref={ref}
       className="min-h-screen bg-black text-white overflow-x-hidden selection:bg-white/20"
+      style={{ fontFamily: "'Inter', sans-serif" }}
     >
       {/* ─── HERO ─── */}
       <section className="relative h-screen">
