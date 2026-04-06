@@ -12,7 +12,6 @@ import playlist1 from "@/assets/landing/playlist1.jpg";
 import label1 from "@/assets/landing/label1.png";
 import label2 from "@/assets/landing/label2.jpg";
 import logo from "@/assets/sextacy-logo.png";
-import label2 from "@/assets/landing/label2.jpg";
 
 const CTA = ({ children, href = "#" }: { children: React.ReactNode; href?: string }) => (
   <a
