@@ -235,7 +235,7 @@ const Landing = () => {
         </div>
         {/* Image overlapping label text from right */}
         <img
-          src={eventsImg}
+          src={label2}
           alt=""
           className="absolute top-[84%] right-[5%] md:right-[12%] w-[38vw] md:w-[25vw] h-[35vh] object-cover -rotate-2 opacity-45 z-[4]"
         />
