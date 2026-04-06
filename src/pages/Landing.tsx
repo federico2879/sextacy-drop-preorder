@@ -214,7 +214,7 @@ const Landing = () => {
         />
         {/* Counterweight image — left, small */}
         <img
-          src={labelImg}
+          src={label1}
           alt=""
           className="absolute top-[70%] left-[2%] w-[22vw] md:w-[13vw] h-[22vh] object-cover rotate-3 opacity-25"
         />
