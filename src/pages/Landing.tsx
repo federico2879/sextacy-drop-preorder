@@ -155,7 +155,7 @@ const Landing = () => {
         />
         {/* Small image floating left, tension */}
         <img
-          src={eventsImg}
+          src={events3}
           alt=""
           className="absolute top-[28%] left-[3%] w-[20vw] md:w-[12vw] h-[18vh] object-cover -rotate-3 opacity-30"
         />
