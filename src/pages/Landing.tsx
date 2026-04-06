@@ -67,7 +67,7 @@ const Landing = () => {
         />
         {/* Image — bottom right, overlaps with title */}
         <img
-          src={merchImg}
+          src={merch1}
           alt=""
           className="absolute bottom-[8%] right-[10%] w-[35vw] md:w-[22vw] h-[40vh] object-cover -rotate-1 opacity-40 z-[5]"
         />
