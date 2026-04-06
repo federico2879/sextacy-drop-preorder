@@ -55,7 +55,7 @@ const Landing = () => {
       <section className="relative h-screen">
         {/* Image — bleeds from left, overlapped BY title */}
         <img
-          src={eventsImg}
+          src={events1}
           alt=""
           className="absolute top-[10%] -left-[5%] w-[55vw] md:w-[38vw] h-[70vh] object-cover -rotate-2 opacity-60"
         />
