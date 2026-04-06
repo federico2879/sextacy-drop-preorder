@@ -61,7 +61,7 @@ const Landing = () => {
         />
         {/* Image — top right, smaller, higher */}
         <img
-          src={communityImg}
+          src={community1}
           alt=""
           className="absolute top-[5%] right-[3%] w-[28vw] md:w-[18vw] h-[35vh] object-cover rotate-3 opacity-50"
         />
