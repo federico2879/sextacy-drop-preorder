@@ -149,6 +149,7 @@ const Landing = () => {
           description="The night is not for everyone."
           image={events1}
           cta="Join the night"
+          link="https://xceed.me/events/channel/sextacy-3"
         />
         <Section
           title="Community"
@@ -178,6 +179,7 @@ const Landing = () => {
           description="Explore the label."
           image={label2}
           cta="Explore"
+          link="https://www.instagram.com/sextacyrecords?igsh=MXB0ZGJ1eGxvOXdvMw=="
           imageClass="object-contain bg-black"
         />
       </div>
