@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { type Product } from "@/data/products";
+import { type Product, reMerchTransform } from "@/data/products";
 
 interface ProductCardProps {
   product: Product;
@@ -18,7 +18,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <div className="absolute inset-0 bg-muted animate-pulse" />
           )}
           <img
-            src={product.graphicCover}
+            src={reMerchTransform(product.graphicCover, "w-800,q-70,f-auto")}
             alt={product.name}
             className={`w-full aspect-[4/5] object-cover transition-all duration-500 group-hover:scale-105 ${
               imageLoaded ? "opacity-100" : "opacity-0"
