@@ -56,7 +56,10 @@ const Section = ({
       <div>
         <a
           href="#"
-          onClick={(e) => { e.preventDefault(); if (link) window.location.href = link; }}
+          href={link || "#"}
+          onClick={link ? undefined : (e) => e.preventDefault()}
+          target={link?.startsWith("http") ? "_blank" : undefined}
+          rel={link?.startsWith("http") ? "noopener noreferrer" : undefined}
           className="inline-block text-xs tracking-[0.3em] uppercase border border-white/20 px-8 py-3 text-white/60 hover:text-white hover:border-white/60 transition-all duration-500 font-medium"
           style={{ fontFamily: clashFont }}
         >
@@ -153,6 +156,7 @@ const Landing = () => {
           description="Join the movement."
           image={community1}
           cta="Join WhatsApp"
+          link="https://chat.whatsapp.com/LZc7UYX11WCH8GGeEa6pYS"
           reverse
         />
         <Section
@@ -167,6 +171,7 @@ const Landing = () => {
           description="Listen to the sound."
           image={playlist1}
           cta="Open Spotify"
+          link="https://open.spotify.com/playlist/3OEVaCS4RF6VJmto6PD64l?si=7f872c580c4a48a2"
           reverse
         />
         <Section
