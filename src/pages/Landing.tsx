@@ -114,8 +114,8 @@ const Landing = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black" />
 
-        <div className="relative z-10 flex -translate-y-10 md:translate-y-14 flex-col items-center text-center px-6">
-          <div data-a className="opacity-0 translate-y-8 transition-all duration-[1.2s] ease-out mb-10">
+        <div className="relative z-10 flex flex-col items-center text-center px-6 md:translate-y-14 translate-y-[8vh]">
+          <div data-a className="opacity-0 translate-y-8 transition-all duration-[1.2s] ease-out mb-4 md:mb-10">
             <img
               src={logo}
               alt="SEXTACY"
@@ -124,7 +124,7 @@ const Landing = () => {
           </div>
           <p
             data-a
-            className="opacity-0 translate-y-8 transition-all duration-1000 ease-out delay-300 text-white/40 text-xs md:text-sm tracking-[0.4em] uppercase mb-[13.5rem] font-medium"
+            className="opacity-0 translate-y-8 transition-all duration-1000 ease-out delay-300 text-white/40 text-xs md:text-sm tracking-[0.4em] uppercase mb-[8vh] md:mb-[13.5rem] font-medium"
             style={{ fontFamily: clashFont }}
           >
             Respect the music.
