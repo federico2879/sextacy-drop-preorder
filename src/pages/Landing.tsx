@@ -28,6 +28,7 @@ const Section = ({
   description,
   image,
   cta,
+  link,
   reverse = false,
   imageClass = "",
 }: {
@@ -35,6 +36,7 @@ const Section = ({
   description: string;
   image: string;
   cta: string;
+  link?: string;
   reverse?: boolean;
   imageClass?: string;
 }) => (
@@ -54,7 +56,7 @@ const Section = ({
       <div>
         <a
           href="#"
-          onClick={(e) => e.preventDefault()}
+          onClick={(e) => { e.preventDefault(); if (link) window.location.href = link; }}
           className="inline-block text-xs tracking-[0.3em] uppercase border border-white/20 px-8 py-3 text-white/60 hover:text-white hover:border-white/60 transition-all duration-500 font-medium"
           style={{ fontFamily: clashFont }}
         >
@@ -158,6 +160,7 @@ const Landing = () => {
           description="The collection."
           image={merch1}
           cta="View collection"
+          link="/merch"
         />
         <Section
           title="Playlist"
