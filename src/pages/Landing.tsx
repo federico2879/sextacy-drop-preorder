@@ -1,6 +1,16 @@
 import { useEffect, useRef } from "react";
 import logo from "@/assets/sextacy-logo.png";
 
+// Load Clash Display font (scoped to landing only)
+const clashLink = document.createElement("link");
+clashLink.rel = "stylesheet";
+clashLink.href = "https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap";
+if (!document.querySelector(`link[href="${clashLink.href}"]`)) {
+  document.head.appendChild(clashLink);
+}
+
+const clashFont = "'Clash Display', 'Inter', sans-serif";
+
 const LANDING_IMAGEKIT_BASE = "https://ik.imagekit.io/sextacy/landing/";
 
 const getLandingImage = (filename: string, transform = "w-1200,q-70,f-auto") =>
@@ -34,7 +44,7 @@ const Section = ({
   >
     <div className="w-full md:w-1/2 flex flex-col justify-center">
       <p className="text-[10px] tracking-[0.5em] uppercase text-white/30 mb-3">Sextacy</p>
-      <h2 className="text-4xl md:text-6xl lg:text-7xl font-extralight uppercase tracking-[0.15em] leading-[0.9] mb-5">
+      <h2 className="text-4xl md:text-6xl lg:text-7xl font-semibold uppercase tracking-[0.18em] leading-[0.9] mb-5" style={{ fontFamily: clashFont }}>
         {title}
       </h2>
       <p className="text-sm md:text-base tracking-[0.2em] text-white/40 mb-8 max-w-sm">
@@ -44,7 +54,8 @@ const Section = ({
         <a
           href="#"
           onClick={(e) => e.preventDefault()}
-          className="inline-block text-xs tracking-[0.3em] uppercase border border-white/20 px-8 py-3 text-white/60 hover:text-white hover:border-white/60 transition-all duration-500"
+          className="inline-block text-xs tracking-[0.3em] uppercase border border-white/20 px-8 py-3 text-white/60 hover:text-white hover:border-white/60 transition-all duration-500 font-medium"
+          style={{ fontFamily: clashFont }}
         >
           {cta}
         </a>
@@ -87,7 +98,7 @@ const Landing = () => {
     <div
       ref={ref}
       className="min-h-screen bg-black text-white overflow-x-hidden selection:bg-white/20"
-      style={{ fontFamily: "'Inter', sans-serif" }}
+      style={{ fontFamily: "'Clash Display', 'Inter', sans-serif" }}
     >
       {/* ─── HERO ─── */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -108,14 +119,16 @@ const Landing = () => {
           </div>
           <p
             data-a
-            className="opacity-0 translate-y-8 transition-all duration-1000 ease-out delay-300 text-white/40 text-xs md:text-sm tracking-[0.4em] uppercase mb-12"
+            className="opacity-0 translate-y-8 transition-all duration-1000 ease-out delay-300 text-white/40 text-xs md:text-sm tracking-[0.4em] uppercase mb-12 font-medium"
+            style={{ fontFamily: clashFont }}
           >
             Respect the music.
           </p>
           <button
             data-a
             onClick={scrollToContent}
-            className="opacity-0 translate-y-8 transition-all duration-1000 ease-out delay-500 border border-white/30 px-10 py-4 text-xs tracking-[0.3em] uppercase text-white/70 hover:text-white hover:border-white hover:bg-white/5 transition-colors duration-500"
+            className="opacity-0 translate-y-8 transition-all duration-1000 ease-out delay-500 border border-white/30 px-10 py-4 text-xs tracking-[0.3em] uppercase text-white/70 hover:text-white hover:border-white hover:bg-white/5 transition-colors duration-500 font-medium"
+            style={{ fontFamily: clashFont }}
           >
             Explore now
           </button>
