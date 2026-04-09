@@ -120,7 +120,7 @@ const Landing = () => {
           </div>
           <p
             data-a
-            className="opacity-0 translate-y-8 transition-all duration-1000 ease-out delay-300 text-white/40 text-xs md:text-sm tracking-[0.4em] uppercase mb-48 font-medium"
+            className="opacity-0 translate-y-8 transition-all duration-1000 ease-out delay-300 text-white/40 text-xs md:text-sm tracking-[0.4em] uppercase mb-[13.5rem] font-medium"
             style={{ fontFamily: clashFont }}
           >
             Respect the music.
