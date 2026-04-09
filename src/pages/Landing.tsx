@@ -132,7 +132,7 @@ const Landing = () => {
           <button
             data-a
             onClick={scrollToContent}
-            className="opacity-0 translate-y-8 transition-all duration-1000 ease-out delay-500 border border-white/30 px-10 py-4 text-xs tracking-[0.3em] uppercase text-white/70 hover:text-white hover:border-white hover:bg-white/5 transition-colors duration-500 font-medium"
+            className="opacity-0 translate-y-8 transition-all duration-1000 ease-out delay-500 border border-white/30 px-10 py-4 text-xs tracking-[0.3em] uppercase text-white/70 hover:text-white hover:border-white hover:bg-white/5 transition-colors duration-500 font-medium mt-[3vh] md:mt-0"
             style={{ fontFamily: clashFont }}
           >
             Explore now
