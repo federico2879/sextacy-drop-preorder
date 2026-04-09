@@ -1,11 +1,17 @@
 import { useEffect, useRef } from "react";
-import events1 from "@/assets/landing/events1.jpg";
-import events2 from "@/assets/landing/events2.jpg";
-import community1 from "@/assets/landing/community1.jpg";
-import merch1 from "@/assets/landing/merch1.jpg";
-import playlist1 from "@/assets/landing/playlist1.jpg";
-import label2 from "@/assets/landing/label2.jpg";
 import logo from "@/assets/sextacy-logo.png";
+
+const LANDING_IMAGEKIT_BASE = "https://ik.imagekit.io/sextacy/landing/";
+
+const getLandingImage = (filename: string, transform = "w-1200,q-70,f-auto") =>
+  `${LANDING_IMAGEKIT_BASE}${filename}?tr=${transform}`;
+
+const events2 = getLandingImage("events2.jpg", "w-1800,q-70,f-auto");
+const events1 = getLandingImage("events1.jpg", "w-1200,q-70,f-auto");
+const community1 = getLandingImage("community1.jpg", "w-1200,q-70,f-auto");
+const merch1 = getLandingImage("merch1.jpg", "w-1200,q-70,f-auto");
+const playlist1 = getLandingImage("playlist1.jpg", "w-1200,q-70,f-auto");
+const label2 = getLandingImage("label2.jpg", "w-800,q-70,f-auto");
 
 const Section = ({
   title,
