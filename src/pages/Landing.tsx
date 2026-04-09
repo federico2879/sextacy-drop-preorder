@@ -29,21 +29,22 @@ const Section = ({
   image,
   cta,
   reverse = false,
+  imageClass = "",
 }: {
   title: string;
   description: string;
   image: string;
   cta: string;
   reverse?: boolean;
+  imageClass?: string;
 }) => (
   <section
     data-a
     className={`opacity-0 translate-y-8 transition-all duration-[1s] ease-out min-h-screen flex flex-col ${
       reverse ? "md:flex-row-reverse" : "md:flex-row"
-    } items-center gap-8 md:gap-16 px-6 md:px-16 lg:px-24 py-20 md:py-0`}
+    } items-center gap-8 md:gap-16 px-6 md:px-16 lg:px-24 py-24 md:py-0`}
   >
     <div className="w-full md:w-1/2 flex flex-col justify-center">
-      <p className="text-[10px] tracking-[0.5em] uppercase text-white/30 mb-3">Sextacy</p>
       <h2 className="text-4xl md:text-6xl lg:text-7xl font-semibold uppercase tracking-[0.18em] leading-[0.9] mb-5" style={{ fontFamily: clashFont }}>
         {title}
       </h2>
@@ -65,7 +66,7 @@ const Section = ({
       <img
         src={image}
         alt={title}
-        className="w-full h-[50vh] md:h-[70vh] object-cover rounded-sm opacity-80"
+        className={`w-full h-[50vh] md:h-[70vh] object-cover rounded-sm opacity-80 ${imageClass}`}
       />
     </div>
   </section>
@@ -110,16 +111,16 @@ const Landing = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black" />
 
         <div className="relative z-10 flex flex-col items-center text-center px-6">
-          <div data-a className="opacity-0 translate-y-8 transition-all duration-[1.2s] ease-out">
+          <div data-a className="opacity-0 translate-y-8 transition-all duration-[1.2s] ease-out mb-10">
             <img
               src={logo}
               alt="SEXTACY"
-              className="w-[65vw] md:w-[40vw] lg:w-[30vw] brightness-0 invert mb-8"
+              className="w-[65vw] md:w-[40vw] lg:w-[30vw] brightness-0 invert"
             />
           </div>
           <p
             data-a
-            className="opacity-0 translate-y-8 transition-all duration-1000 ease-out delay-300 text-white/40 text-xs md:text-sm tracking-[0.4em] uppercase mb-12 font-medium"
+            className="opacity-0 translate-y-8 transition-all duration-1000 ease-out delay-300 text-white/40 text-xs md:text-sm tracking-[0.4em] uppercase mb-16 font-medium"
             style={{ fontFamily: clashFont }}
           >
             Respect the music.
@@ -134,15 +135,14 @@ const Landing = () => {
           </button>
         </div>
 
-        {/* Bottom fade */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent" />
       </section>
 
       {/* ─── SECTIONS ─── */}
-      <div id="landing-sections">
+      <div id="landing-sections" className="space-y-8">
         <Section
           title="Events"
-          description="Every Thursday in Torino."
+          description="The night is not for everyone."
           image={events1}
           cta="Join the night"
         />
@@ -171,6 +171,7 @@ const Landing = () => {
           description="Explore the label."
           image={label2}
           cta="Explore"
+          imageClass="object-contain bg-black"
         />
       </div>
 
