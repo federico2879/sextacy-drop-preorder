@@ -13,7 +13,7 @@ export default {
       },
     },
     fontFamily: {
-      sans: ['Space Grotesk', 'sans-serif'],
+      sans: ['Clash Display', 'Space Grotesk', 'sans-serif'],
     },
     extend: {
       colors: {
