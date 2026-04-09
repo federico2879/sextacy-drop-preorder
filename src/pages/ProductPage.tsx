@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getProduct } from "@/data/products";
+import { getProduct, reMerchTransform } from "@/data/products";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 
 const PRODUCT_DESCRIPTIONS: Record<number, string> = {
@@ -98,7 +98,7 @@ const ProductPage = () => {
               <div className="absolute inset-0 bg-muted animate-pulse" />
             )}
             <img
-              src={images[activeImage]}
+              src={reMerchTransform(images[activeImage], "w-1400,q-70,f-auto")}
               alt={product.name}
               className={`w-full aspect-[4/5] object-cover transition-all duration-500 ${
                 imageLoaded[activeImage] ? "opacity-100" : "opacity-0"
@@ -150,7 +150,7 @@ const ProductPage = () => {
                   }`}
                 >
                   <img
-                    src={img}
+                    src={reMerchTransform(img, "w-600,q-70,f-auto")}
                     alt={`${product.name} view ${i + 1}`}
                     className="w-full aspect-square object-cover"
                     loading="lazy"

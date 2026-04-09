@@ -1,13 +1,36 @@
 // Auto-derive products from asset filenames using import.meta.glob
-// Naming convention: <order>-<product_name>-<image_index>[-_][FB]?.(jpg|jpeg|png)
+// Compressed images are now served from ImageKit; graphics remain local.
 
-const compressedModules = import.meta.glob<string>(
-  "../assets/compressed/*.{jpg,jpeg,png}",
+const MERCH_IMAGEKIT_BASE = "https://ik.imagekit.io/sextacy/merch/";
+
+/**
+ * Build an ImageKit merch URL with optional transform.
+ * @param filename  e.g. "1-Zebra_Sextacy_Tee-1.jpg"
+ * @param transform ImageKit transform string
+ */
+export const getMerchImage = (
+  filename: string,
+  transform = "w-1200,q-70,f-auto"
+) => `${MERCH_IMAGEKIT_BASE}${filename}?tr=${transform}`;
+
+/**
+ * Re-apply a different transform to an existing merch ImageKit URL.
+ */
+export const reMerchTransform = (url: string, transform: string): string => {
+  if (!url.startsWith(MERCH_IMAGEKIT_BASE)) return url; // not a merch ImageKit URL
+  const filename = url.split("?")[0].replace(MERCH_IMAGEKIT_BASE, "");
+  return getMerchImage(filename, transform);
+};
+
+// --- Graphics: still local ---
+const graphicsModules = import.meta.glob<string>(
+  "../assets/graphics/*.{jpg,jpeg,png}",
   { eager: true, import: "default" }
 );
 
-const graphicsModules = import.meta.glob<string>(
-  "../assets/graphics/*.{jpg,jpeg,png}",
+// --- Compressed: discover filenames via glob, but serve from ImageKit ---
+const compressedModules = import.meta.glob<string>(
+  "../assets/compressed/*.{jpg,jpeg,png}",
   { eager: true, import: "default" }
 );
 
@@ -25,24 +48,35 @@ interface RawEntry {
 
 const entries: RawEntry[] = [];
 
-function parseModules(modules: Record<string, string>, source: "compressed" | "graphics") {
-  for (const [path, url] of Object.entries(modules)) {
-    const filename = path.split("/").pop() || "";
-    const match = filename.match(FILE_REGEX);
-    if (!match) continue;
-    entries.push({
-      order: parseInt(match[1], 10),
-      name: match[2].replace(/_/g, " "),
-      imageIndex: parseInt(match[3], 10),
-      variant: (match[4] || "").toUpperCase(),
-      url,
-      source,
-    });
-  }
+// Parse graphics (keep local URLs)
+for (const [path, url] of Object.entries(graphicsModules)) {
+  const filename = path.split("/").pop() || "";
+  const match = filename.match(FILE_REGEX);
+  if (!match) continue;
+  entries.push({
+    order: parseInt(match[1], 10),
+    name: match[2].replace(/_/g, " "),
+    imageIndex: parseInt(match[3], 10),
+    variant: (match[4] || "").toUpperCase(),
+    url,
+    source: "graphics",
+  });
 }
 
-parseModules(compressedModules, "compressed");
-parseModules(graphicsModules, "graphics");
+// Parse compressed → ImageKit URLs (default transform)
+for (const path of Object.keys(compressedModules)) {
+  const filename = path.split("/").pop() || "";
+  const match = filename.match(FILE_REGEX);
+  if (!match) continue;
+  entries.push({
+    order: parseInt(match[1], 10),
+    name: match[2].replace(/_/g, " "),
+    imageIndex: parseInt(match[3], 10),
+    variant: (match[4] || "").toUpperCase(),
+    url: getMerchImage(filename), // ImageKit URL with default transform
+    source: "compressed",
+  });
+}
 
 // Use string keys like "0", "0_F", "0_B" to keep all variants
 function entryKey(imageIndex: number, variant: string): string {
@@ -83,13 +117,11 @@ export interface Product {
 }
 
 // Desired product page order: 0_F, 0_B, 0, 1, 100, 101, 2, 3, 4, ...
-// We define a sort weight for each key to enforce this.
 const PAGE_ORDER_KEYS = ["0_F", "0_B", "0", "1", "100", "101"];
 
 function sortKeyWeight(key: string): number {
   const idx = PAGE_ORDER_KEYS.indexOf(key);
   if (idx !== -1) return idx;
-  // Everything else sorted numerically after the priority keys
   const num = parseInt(key);
   return PAGE_ORDER_KEYS.length + (isNaN(num) ? 9999 : num);
 }
@@ -98,7 +130,6 @@ function buildProductPageImages(
   graphics: Map<string, string>,
   compressed: Map<string, string>
 ): string[] {
-  // Merge all images into one list with their keys
   const all: [string, string][] = [];
   for (const [key, url] of graphics.entries()) {
     all.push([key, url]);
