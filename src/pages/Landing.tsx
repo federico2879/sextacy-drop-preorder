@@ -55,7 +55,6 @@ const Section = ({
       </p>
       <div>
         <a
-          href="#"
           href={link || "#"}
           onClick={link ? undefined : (e) => e.preventDefault()}
           target={link?.startsWith("http") ? "_blank" : undefined}
