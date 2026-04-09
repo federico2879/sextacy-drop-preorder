@@ -114,7 +114,7 @@ const Landing = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black" />
 
-        <div className="relative z-10 flex translate-y-14 flex-col items-center text-center px-6">
+        <div className="relative z-10 flex -translate-y-10 md:translate-y-14 flex-col items-center text-center px-6">
           <div data-a className="opacity-0 translate-y-8 transition-all duration-[1.2s] ease-out mb-10">
             <img
               src={logo}
