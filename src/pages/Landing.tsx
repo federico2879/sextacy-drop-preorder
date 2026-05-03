@@ -149,7 +149,7 @@ const Landing = () => {
           description="The night is not for everyone."
           image={events1}
           cta="Join the night"
-          link="https://xceed.me/events/channel/sextacy-3"
+          link="https://xceed.me/en/torino/event/sextacy-respect-the-district/229225/channel/sextacy-2"
         />
         <Section
           title="Community"
