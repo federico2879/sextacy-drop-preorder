@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import ProductPage from "./pages/ProductPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Landing from "./pages/Landing";
+import Events from "./pages/Events";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
