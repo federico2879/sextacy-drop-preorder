@@ -17,26 +17,18 @@ type EventItem = {
 
 const events: EventItem[] = [
   {
-    title: "Sextacy // Respect The District",
-    description: "The night is not for everyone.",
-    date: "TBA",
-    location: "Torino",
-    image: img("events1.jpg"),
+    title: "SEXTACY X RED BULL OPEN AIR at Le Panche",
+    description:
+      "Open Air dj set event on the Red Bull car. Thursday 07th May, Le Panche Torino, via Reggio 3. From 18:00 to 22:00. FREE ENTRY.",
+    image: "/events/sextacy-le-panche.jpg",
+    link: "https://www.instagram.com/sextacy.rtm?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+  },
+  {
+    title: "SEXTACY Respect The District",
+    description:
+      "Charity event at Terrazza Cartiera. Friday 08th May, Terrazza Cartiera, via Fossano 8. From 18:00 to 22:00. FREE ENTRY.",
+    image: "/events/sextacy-respect-district.jpg",
     link: "https://xceed.me/en/torino/event/sextacy-respect-the-district/229225/channel/sextacy-2",
-  },
-  {
-    title: "Next Sextacy Event",
-    description: "More details coming soon.",
-    location: "Torino",
-    image: img("events2.jpg", "w-1800,q-70,f-auto"),
-    link: "#",
-  },
-  {
-    title: "Next Sextacy Event",
-    description: "More details coming soon.",
-    location: "Torino",
-    image: img("community1.jpg"),
-    link: "#",
   },
 ];
 
