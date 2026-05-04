@@ -73,11 +73,11 @@ const Events = () => {
             key={i}
             className="group flex flex-col md:flex-row border border-white/10 rounded-lg overflow-hidden bg-white/[0.02] hover:border-white/30 transition-colors duration-500"
           >
-            <div className="w-full md:w-1/2 lg:w-2/5 overflow-hidden">
+            <div className="w-full md:w-1/2 lg:w-2/5 overflow-hidden bg-black flex items-center justify-center">
               <img
                 src={ev.image}
                 alt={ev.title}
-                className="w-full h-64 md:h-[420px] object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+                className="w-full h-auto md:h-[420px] object-contain md:object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
               />
             </div>
             <div className="w-full md:w-1/2 lg:w-3/5 p-8 md:p-12 flex flex-col justify-center">
