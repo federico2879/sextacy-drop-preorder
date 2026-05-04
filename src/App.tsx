@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import ProductPage from "./pages/ProductPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Landing from "./pages/Landing";
+import Events from "./pages/Events";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,6 +21,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/merch" element={<Index />} />
+          <Route path="/events" element={<Events />} />
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NotFound />} />
