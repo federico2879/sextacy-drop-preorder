@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import logo from "@/assets/sextacy-logo.png";
+import eventsHome from "@/assets/events-home.jpg";
 
 // Load Clash Display font (scoped to landing only)
 const clashLink = document.createElement("link");
