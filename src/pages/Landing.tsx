@@ -148,7 +148,7 @@ const Landing = () => {
         <Section
           title="Events"
           description="The night is not for everyone."
-          image={events1}
+          image={eventsHome}
           cta="Join the night"
           link="/events"
         />
