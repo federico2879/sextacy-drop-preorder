@@ -17,18 +17,18 @@ type EventItem = {
 
 const events: EventItem[] = [
   {
-    title: "SEXTACY X RED BULL OPEN AIR at Le Panche",
+    title: "SHOUT! X SEXTACY AT ONE TERRACE",
     description:
-      "Open Air dj set event on the Red Bull car. Thursday 07th May, Le Panche Torino, via Reggio 3. From 18:00 to 22:00. FREE ENTRY.",
-    image: "/events/sextacy-le-panche.jpg",
-    link: "https://www.instagram.com/sextacy.rtm?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+      "Back at One with Shout!, Friday May 15th, from 23.00 till 5.00.",
+    image: "/events/sottosopra-shout-sextacy.png",
+    link: "https://xceed.me/en/torino/event/sottoopra-by-shout-1/230473/channel/sexamente-1",
   },
   {
-    title: "SEXTACY Respect The District",
+    title: "SEXTACY RECORDS AT JUDAFIRE, QUADRILATERO ROMANO",
     description:
-      "Charity event at Terrazza Cartiera. Friday 08th May, Terrazza Cartiera, via Fossano 8. From 18:00 to 22:00. FREE ENTRY.",
-    image: "/events/sextacy-respect-district.jpg",
-    link: "https://xceed.me/en/torino/event/sextacy-respect-the-district/229225/channel/sextacy-2",
+      "First Sextacy Records event. Official Shout! x Sextacy PreClub. Community event, FREE ENTRY for everyone. From 21.30 till 1.00.",
+    image: "/events/sextacy-records-judafire.jpg",
+    link: "https://www.instagram.com/sextacy.rtm/",
   },
 ];
 
