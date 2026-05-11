@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import logo from "@/assets/sextacy-logo.png";
+import eventsHome from "@/assets/events-home.jpg";
 
 // Load Clash Display font (scoped to landing only)
 const clashLink = document.createElement("link");
@@ -147,7 +148,7 @@ const Landing = () => {
         <Section
           title="Events"
           description="The night is not for everyone."
-          image={events1}
+          image={eventsHome}
           cta="Join the night"
           link="/events"
         />
