@@ -19,14 +19,14 @@ const events: EventItem[] = [
   {
     title: "SHOUT! X SEXTACY AT ONE TERRACE",
     description:
-      "Back at One with Shout!, Friday May 15th, from 23.00 till 5.00.",
+      "Back at One with Shout!. Friday May 15th, from 23.00 till 5.00.",
     image: "/events/sottosopra-shout-sextacy.png",
     link: "https://xceed.me/en/torino/event/sottoopra-by-shout-1/230473/channel/sexamente-1",
   },
   {
     title: "SEXTACY RECORDS AT JUDAFIRE, QUADRILATERO ROMANO",
     description:
-      "First Sextacy Records event. Official Shout! x Sextacy PreClub. Community event, FREE ENTRY for everyone. From 21.30 till 1.00.",
+      "First Sextacy Records event. Official Shout! x Sextacy PreClub. Community event, FREE ENTRY for everyone. Friday May 15th, from 21.30 till 1.00.",
     image: "/events/sextacy-records-judafire.jpg",
     link: "https://www.instagram.com/sextacy.rtm/",
   },
