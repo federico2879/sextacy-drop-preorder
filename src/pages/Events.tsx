@@ -17,11 +17,11 @@ type EventItem = {
 
 const events: EventItem[] = [
   {
-    title: "SHOUT! X SEXTACY AT ONE TERRACE",
+    title: "SEXTACY BACK AT GIANCA",
     description:
-      "Back at One with Shout!. Friday May 15th, from 23.00 till 5.00.",
-    image: "/events/sottosopra-shout-sextacy.png",
-    link: "https://xceed.me/en/torino/event/sottoopra-by-shout-1/230473/channel/sexamente-1",
+      "We're back home at Gianca Murazzi. Saturday May 30th, from 23.30 to 5.00. Tickets available here.",
+    image: "/events/sextacy-gianca.png",
+    link: "https://xceed.me/it/torino/event/sextacy-10/231860/channel/gianca-murazzi-1",
   },
   {
     title: "SEXTACY RECORDS AT JUDAFIRE, QUADRILATERO ROMANO",
