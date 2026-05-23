@@ -23,13 +23,6 @@ const events: EventItem[] = [
     image: "/events/sextacy-gianca.png",
     link: "https://xceed.me/it/torino/event/sextacy-10/231860/channel/gianca-murazzi-1",
   },
-  {
-    title: "SEXTACY RECORDS AT JUDAFIRE, QUADRILATERO ROMANO",
-    description:
-      "First Sextacy Records event. Official Shout! x Sextacy PreClub. Community event, FREE ENTRY for everyone. Friday May 15th, from 21.30 till 1.00.",
-    image: "/events/sextacy-records-judafire.jpg",
-    link: "https://www.instagram.com/sextacy.rtm/",
-  },
 ];
 
 const Events = () => {
