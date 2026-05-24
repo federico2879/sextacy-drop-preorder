@@ -23,6 +23,13 @@ const events: EventItem[] = [
     image: "/events/sextacy-gianca.png",
     link: "https://xceed.me/it/torino/event/sextacy-10/231860/channel/gianca-murazzi-1",
   },
+  {
+    title: "BELTRAN for Shout! & Sextacy",
+    description:
+      "Back at One Le Box with our friends of Shout!. Special guest BELTRAN. Monday June 1st, from 23.30 to 5.00. Free entry till 00.30 with accreditation.",
+    image: "/events/beltran-shout-sextacy.jpg",
+    link: "https://xceed.me/en/torino/event/beltran-for-shout-sextacy/231856/channel/sexamente-1",
+  },
 ];
 
 const Events = () => {
