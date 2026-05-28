@@ -30,6 +30,13 @@ const events: EventItem[] = [
     image: "/events/beltran-shout-sextacy.jpg",
     link: "https://xceed.me/en/torino/event/beltran-for-shout-sextacy/231856/channel/sexamente-1",
   },
+  {
+    title: "BEACH VOLLEY TOURNAMENT W/ ZEST FAMILY",
+    description:
+      "First Sextacy beach volley tournament, in collaboration with our friends of Zest Family. Saturday June 6th at Amici del Fiume. 12 teams, 4 players each; Tournament and FREE Happy Hour included in the registration. More info here.",
+    image: "/events/beach-volley-zest.jpg",
+    link: "https://zestfamily.it/trip/zest-beach-volley/",
+  },
 ];
 
 const Events = () => {
