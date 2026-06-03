@@ -17,26 +17,13 @@ type EventItem = {
 
 const events: EventItem[] = [
   {
-    title: "SEXTACY BACK AT GIANCA",
-    description:
-      "We're back home at Gianca Murazzi. Saturday May 30th, from 23.30 to 5.00. Tickets available here.",
-    image: "/events/sextacy-gianca.png",
-    link: "https://xceed.me/it/torino/event/sextacy-10/231860/channel/gianca-murazzi-1",
-  },
-  {
-    title: "BELTRAN for Shout! & Sextacy",
-    description:
-      "Back at One Le Box with our friends of Shout!. Special guest BELTRAN. Monday June 1st, from 23.30 to 5.00. Free entry till 00.30 with accreditation.",
-    image: "/events/beltran-shout-sextacy.jpg",
-    link: "https://xceed.me/en/torino/event/beltran-for-shout-sextacy/231856/channel/sexamente-1",
-  },
-  {
     title: "BEACH VOLLEY TOURNAMENT W/ ZEST FAMILY",
     description:
       "First Sextacy beach volley tournament, in collaboration with our friends of Zest Family. Saturday June 6th at Amici del Fiume. 12 teams, 4 players each; Tournament and FREE Happy Hour included in the registration. More info here.",
     image: "/events/beach-volley-zest.jpg",
     link: "https://zestfamily.it/trip/zest-beach-volley/",
   },
+
 ];
 
 const Events = () => {
