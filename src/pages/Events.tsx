@@ -23,6 +23,13 @@ const events: EventItem[] = [
     image: "/events/beach-volley-zest.jpg",
     link: "https://zestfamily.it/trip/zest-beach-volley/",
   },
+  {
+    title: "AERO CLUB W/ CLUB SILENCIO & VERAMENTE",
+    description:
+      "Sextacy lands in one of the most particular location in Turin with the first collaboration with Club Silencio and with our friends of Veramente. Saturday June 6th, from 19.00 to 24.00. More info here.",
+    image: "/events/aero-club-silencio.jpg",
+    link: "https://to.clubsilencio.it/aeroclub/?src=sexamente",
+  },
 
 ];
 
