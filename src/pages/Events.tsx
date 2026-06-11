@@ -17,20 +17,19 @@ type EventItem = {
 
 const events: EventItem[] = [
   {
-    title: "BEACH VOLLEY TOURNAMENT W/ ZEST FAMILY",
+    title: "GIANCA BACK HOME 2.0",
     description:
-      "First Sextacy beach volley tournament, in collaboration with our friends of Zest Family. Saturday June 6th at Amici del Fiume. 12 teams, 4 players each; Tournament and FREE Happy Hour included in the registration. More info here.",
-    image: "/events/beach-volley-zest.jpg",
-    link: "https://zestfamily.it/trip/zest-beach-volley/",
+      "back home to Gianca Murazzi. Friday 12th June, from 23.30 to 5.00. Free entry women till 1.00, early birds 10€ with drink, 1st release 15€ with drink. More info here.",
+    image: "/events/gianca-back-home-2.jpg",
+    link: "https://xceed.me/it/torino/event/sextacy-back-home-1/233442/channel/gianca-murazzi-1",
   },
   {
-    title: "AERO CLUB W/ CLUB SILENCIO & VERAMENTE",
+    title: "CHEAP MARKET W/ HANNIBAL",
     description:
-      "Sextacy lands in one of the most particular location in Turin with the first collaboration with Club Silencio and with our friends of Veramente. Saturday June 6th, from 19.00 to 24.00. More info here.",
-    image: "/events/aero-club-silencio.jpg",
-    link: "https://to.clubsilencio.it/aeroclub/?src=sexamente",
+      "First collaboration with Hannibal Store. The event will take place on Sunday, June 14, inside Hannibal Factory, located at Via Leoncavallo 9i, Turin. From 3:00 PM to 6:00 PM, you'll find a curated selection of streetwear pieces, sneakers, and premium vintage items at discounted prices, all accompanied by our DJ set. Free entry for everyone. More info here.",
+    image: "/events/cheap-market-hannibal.jpg",
+    link: "https://www.instagram.com/p/DZUu1PejWq2/?igsh=cWFvZHY4am92Y2Q3",
   },
-
 ];
 
 const Events = () => {
