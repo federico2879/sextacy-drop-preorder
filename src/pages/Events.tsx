@@ -17,20 +17,21 @@ type EventItem = {
 
 const events: EventItem[] = [
   {
-    title: "GIANCA BACK HOME 2.0",
+    title: "Friday Futur Festival Official After Party at Centralino",
     description:
-      "back home to Gianca Murazzi. Friday 12th June, from 23.30 to 5.00. Free entry women till 1.00, early birds 10€ with drink, 1st release 15€ with drink. More info here.",
-    image: "/events/gianca-back-home-2.jpg",
-    link: "https://xceed.me/it/torino/event/sextacy-back-home-1/233442/channel/gianca-murazzi-1",
+      "Friday 03rd July Official after party of KFF26 at Centralino hosted by Shout!, special guest Manda Moor. Main room: Manda Moor, Groovycat, Youniverse B2B Nicola Gavino, Nachito. Room C2 (Sextacy): Luca Sottil, Ohmikegodz, Solaire",
+    image: "/events/kff-shout-03-07.png",
+    link: "https://xceed.me/en/torino/event/manda-moor-for-kff26-official-shout-after-party-day-1/233856/channel/sexamente-1",
   },
   {
-    title: "CHEAP MARKET W/ HANNIBAL",
+    title: "Saturday Futur Festival Official After Party at Centralino",
     description:
-      "First collaboration with Hannibal Store. The event will take place on Sunday, June 14, inside Hannibal Factory, located at Via Leoncavallo 9i, Turin. From 3:00 PM to 6:00 PM, you'll find a curated selection of streetwear pieces, sneakers, and premium vintage items at discounted prices, all accompanied by our DJ set. Free entry for everyone. More info here.",
-    image: "/events/cheap-market-hannibal.jpg",
-    link: "https://www.instagram.com/p/DZUu1PejWq2/?igsh=cWFvZHY4am92Y2Q3",
+      "Saturday 04th July Official after party of KFF26 at Centralino hosted by Shout!, special guest Cuartero. Main room: Cuartero, Tapeout, Nicola Gavino, Luca Sottil. Room C2 (Sextacy): Nachito, Ohmikegodz B2B Solaire, Vittorio Ursoleo",
+    image: "/events/kff-shout-04-07.png",
+    link: "https://xceed.me/en/torino/event/cuartero-for-kff26-official-shout-after-party-day-2/233861/channel/sexamente-1",
   },
 ];
+
 
 const Events = () => {
   useEffect(() => {
