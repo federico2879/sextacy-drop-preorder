@@ -17,18 +17,25 @@ type EventItem = {
 
 const events: EventItem[] = [
   {
-    title: "Friday Futur Festival Official After Party at Centralino",
+    title: "SEXTACY RECORDS LAST COMMUNITY EVENT AT FREEVOLO",
     description:
-      "Friday 03rd July Official after party of KFF26 at Centralino hosted by Shout!, special guest Manda Moor. Main room: Manda Moor, Groovycat, Youniverse B2B Nicola Gavino, Nachito. Room C2 (Sextacy): Luca Sottil, Ohmikegodz, Solaire",
-    image: "/events/kff-shout-03-07.png",
-    link: "https://xceed.me/en/torino/event/manda-moor-for-kff26-official-shout-after-party-day-1/233856/channel/sexamente-1",
+      "08/07 Back to Freevolo (Quadrilatero Romano) for the last community event of the season. Hybrid set by Rebecca Stellario and Fabio B2B Tita of Kooltura. Free entry for everyone, no accreditation needed. From 20.00 to 00.00.",
+    image: "/events/freevolo-sextacy-08-07.png",
+    link: "https://www.instagram.com/p/DaThYo7slbg/?igsh=MWJscHh3Mmdyd2x2Yg==",
   },
   {
-    title: "Saturday Futur Festival Official After Party at Centralino",
+    title: "SEXAMENTE AT JAZZ CLUB",
     description:
-      "Saturday 04th July Official after party of KFF26 at Centralino hosted by Shout!, special guest Cuartero. Main room: Cuartero, Tapeout, Nicola Gavino, Luca Sottil. Room C2 (Sextacy): Nachito, Ohmikegodz B2B Solaire, Vittorio Ursoleo",
-    image: "/events/kff-shout-04-07.png",
-    link: "https://xceed.me/en/torino/event/cuartero-for-kff26-official-shout-after-party-day-2/233861/channel/sexamente-1",
+      "09/07 Sexamente back at Jazz Club. From 20.00 to 3.00, Free entry till 22.00 via accreditation.",
+    image: "/events/sexamente-jazz-club-09-07.jpg",
+    link: "https://xceed.me/it/torino/event/sexamente-at-jazz-club-0907/237162/channel/prova-veramente-1?utm_source=ig&utm_medium=social&utm_content=link_in_bio&utm_id=97760_v0_s00_e0_tv3",
+  },
+  {
+    title: "SEXTACY X KLAUD CLOSING SEASON PARTY",
+    description:
+      "10/07 back home to Gianca Murazzi for the closing season party, with our friends of Klaud. From 23.30 to 5.00, Free entry women till 1.00.",
+    image: "/events/sextacy-klaud-10-07.png",
+    link: "https://xceed.me/it/torino/event/sextacy-x-klaud-closing-season-party/237412/channel/gianca-murazzi-1",
   },
 ];
 
