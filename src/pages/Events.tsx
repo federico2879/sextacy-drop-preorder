@@ -17,25 +17,11 @@ type EventItem = {
 
 const events: EventItem[] = [
   {
-    title: "SEXTACY RECORDS LAST COMMUNITY EVENT AT FREEVOLO",
+    title: "SEXTACY SUMMER OPENING AT KUTA PORTO ROTONDO",
     description:
-      "08/07 Back to Freevolo (Quadrilatero Romano) for the last community event of the season. Hybrid set by Rebecca Stellario and Fabio B2B Tita of Kooltura. Free entry for everyone, no accreditation needed. From 20.00 to 00.00.",
-    image: "/events/freevolo-sextacy-08-07.png",
-    link: "https://www.instagram.com/p/DaThYo7slbg/?igsh=MWJscHh3Mmdyd2x2Yg==",
-  },
-  {
-    title: "SEXAMENTE AT JAZZ CLUB",
-    description:
-      "09/07 Sexamente back at Jazz Club. From 20.00 to 3.00, Free entry till 22.00 via accreditation.",
-    image: "/events/sexamente-jazz-club-09-07.jpg",
-    link: "https://xceed.me/it/torino/event/sexamente-at-jazz-club-0907/237162/channel/prova-veramente-1?utm_source=ig&utm_medium=social&utm_content=link_in_bio&utm_id=97760_v0_s00_e0_tv3",
-  },
-  {
-    title: "SEXTACY X KLAUD CLOSING SEASON PARTY",
-    description:
-      "10/07 back home to Gianca Murazzi for the closing season party, with our friends of Klaud. From 23.30 to 5.00, Free entry women till 1.00.",
-    image: "/events/sextacy-klaud-10-07.png",
-    link: "https://xceed.me/it/torino/event/sextacy-x-klaud-closing-season-party/237412/channel/gianca-murazzi-1",
+      "Summer Season opening in Sardinia at Kuta Porto Rotondo. Friday 17th July, FREE ENTRY TILL 00.00.",
+    image: "/events/Kuta_sextacy_17.07_post.png",
+    link: "https://gotobeat.com/gig/sextacy-17-07/",
   },
 ];
 
