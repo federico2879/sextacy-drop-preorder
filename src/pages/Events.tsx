@@ -17,11 +17,11 @@ type EventItem = {
 
 const events: EventItem[] = [
   {
-    title: "SEXTACY SUMMER OPENING AT KUTA PORTO ROTONDO",
+    title: "SUMMER CLOSING PARTY AT PISTA 500",
     description:
-      "Summer Season opening in Sardinia at Kuta Porto Rotondo. Friday 17th July, FREE ENTRY TILL 00.00.",
-    image: "/events/Kuta_sextacy_17.07_post.png",
-    link: "https://gotobeat.com/gig/sextacy-17-07/",
+      "Closing of the summer party with Club Silencio and Veramente at Pista 500, Lingotto. Accreditation here:",
+    image: "/events/Sexamente_pista500_post1.png",
+    link: "https://to.clubsilencio.it/pista-500/?src=sexamente",
   },
 ];
 
